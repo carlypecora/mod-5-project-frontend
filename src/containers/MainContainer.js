@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfileContainer from './ProfileContainer'
+import Login from '../components/Login'
 
 
 class MainContainer extends React.Component {
@@ -10,7 +11,12 @@ class MainContainer extends React.Component {
     	Navbar
     	</div> 
       
-        Main Container
+      	<div id="main-content">
+          <div id="second-main-content">
+          
+        	 <Login />
+          </div>
+        </div>
 
         <ProfileContainer />
 
