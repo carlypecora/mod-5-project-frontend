@@ -1,6 +1,8 @@
 import React from 'react'
+import * as actions from '../actions/selectedConversation.js'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
 
 class ConversationsContainer extends React.Component {
 
@@ -18,9 +20,9 @@ componentDidMount(){
 	})
 }
 
-mapThroughConversations = () => {
+mapThroughConversations = (conversations) => {
 	return this.state.conversations.map(conversation => {
-		return <div key={conversation.id}><Link style={{color: 'white'}}>{conversation.title}</Link></div>
+		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white'}}>{conversation.title}</Link></div>
 	})
 }
 
@@ -28,16 +30,22 @@ renderItems = () => {
 	return !this.props.token ?
 		null
 	:
-		this.mapThroughConversations()
+	<div>
+		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left'}}>Your Channels:</div>
+		<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
+			{this.mapThroughConversations()}
+		</div>
+	</div>
+		  
 }
 
 render(){
-	console.log(this.props)
+	console.log("props", this.props)
   return (
 	    <div className="left-sidebar">
-	    <h4 style={{marginTop: 5}}><Link to="/home" style={{color: 'white'}}>Flatiron Slackers</Link></h4>
+	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}}>Flatiron Slackers</Link></h2>
 	      
-	      <div style={{marginTop: 100}}>
+	      <div style={{marginTop: 90, fontSize: 20}}>
 	        {this.renderItems()}
 	       </div>
 	    </div>
@@ -46,7 +54,7 @@ render(){
 }
 
 function mapStateToProps(state){
-	return({...state.auth})
+	return({...state.auth, ...state.selected})
 }
 
-export default connect(mapStateToProps)(ConversationsContainer)
+export default connect(mapStateToProps, actions)(ConversationsContainer)

@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import authReducer from './reducers/authReducer'
+import currentSelectedReducer from './reducers/currentSelectedReducer'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import * as serviceWorker from './serviceWorker';
 
-const rootReducer = combineReducers({auth: authReducer})
+const rootReducer = combineReducers({auth: authReducer, selected: currentSelectedReducer})
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 

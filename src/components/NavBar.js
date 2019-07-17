@@ -35,7 +35,7 @@ const renderNavItems = (props) => {
 }
 
 function mapStateToProps(state){
-	return({...state.auth})
+	return({...state.auth, ...state.selected.currentConversation})
 }
 
 export default connect(mapStateToProps, actions)(NavBar)
