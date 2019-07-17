@@ -27,9 +27,7 @@ class Message extends React.Component {
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						{this.props.text}
 					</div>
-					<div>
-						{this.state.props.created_at}
-					</div>
+					
 				</div>
 			</div>
 		)
