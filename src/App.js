@@ -2,14 +2,31 @@ import React from 'react';
 import './App.css';
 import ConversationsContainer from './containers/ConversationsContainer'
 import MainContainer from './containers/MainContainer'
+import * as actions from './actions/autoLogin.js'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <ConversationsContainer />
-      <MainContainer />
-    </div>
-  );
+
+class App extends React.Component {
+
+componentDidMount(){
+		const token = localStorage.getItem("token")
+		if(token){
+			this.props.autoLogin(token)
+	}
 }
 
-export default App;
+render(){
+	console.log(this.props)
+	  	return (
+	  		<Router>
+			    <div className="App">
+			      <ConversationsContainer />
+			      <MainContainer />
+			    </div>
+		    </Router>
+	  	);
+	}
+}
+
+export default connect(null, actions)(App);

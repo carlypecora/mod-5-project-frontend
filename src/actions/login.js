@@ -1,4 +1,4 @@
-export function login(userData) {
+export function login(userData, props) {
     
     return dispatch => {
     fetch('http://localhost:3000/login', {
@@ -21,6 +21,7 @@ export function login(userData) {
         alert(data.message);
       } else {
         localStorage.setItem("token", data.token);
+        props.history.push('/home')
         dispatch({type: "LOG_IN", payload: {user: data.user, jwt: data.token}})
       }
     })

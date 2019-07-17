@@ -32,6 +32,13 @@
   }
 }
 */
+
+.card {
+  position: relative;
+  width: 100% !important;
+  margin-top: 40%;
+}
+
 .center-div {
   top: 0;
   bottom: 0;
@@ -76,9 +83,47 @@
 }
 
 #login-form {
-  margin-top: 15%;
+  margin-top: 10%;
   width: 50%;
-  margin: auto;
+  margin-left: 40%;
 }
 
+#sign-up-form {
+  margin-top: 10%;
+  width: 50%;
+  margin-left: 40%;
+}
+
+/*.nav-links{
+  float: right;
+  margin-right: 5%;
+  margin-top: 0.5%;
+}*/
+
+.single-nav-link {
+  float:right;
+  margin-top: 0.5%;
+  margin-right: 3%;
+}
+
+.foo {
+  text-align: left;
+  margin-left: 23%;
+  width:40%;
+}
+
+.upload-file {
+  display: inline;
+  position: absolute;
+  text-align: left;
+}
+
+.upload-file-button {
+  display: inline;
+}
+
+.home-login-error {
+  margin-top: 25%;
+  margin-left: 40%;
+}
 
