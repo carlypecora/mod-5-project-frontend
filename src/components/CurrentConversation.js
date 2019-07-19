@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import { ActionCable } from 'react-actioncable-provider';
-// import Cable from './Cable';
+import { ActionCableConsumer } from 'react-actioncable-provider';
+import Cable from './Cable';
 
 class CurrentConversation extends React.Component {
 
 	state ={
-		log: [],
 		message: ""
 	}
 
@@ -25,6 +24,27 @@ class CurrentConversation extends React.Component {
  //        	log: [...this.state.log, message]
  //        })
  //    }
+
+ 	handleSubmit = (e) => {
+	    e.preventDefault()
+		fetch('http://localhost:3000/messages', {
+	      method: 'POST',
+	      headers: {
+	        'Content-Type': 'application/json',
+	        'Accepts': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        	text: this.state.message,
+	        	conversation_id: this.props.id,
+	        	user_id: this.props.currentUser.id
+	      	})
+	    })
+		 .then(res => res.json())
+		 .then(data => this.setState({
+		 	message: ''
+		 }))
+		 .catch(error => console.error(error))
+  	}
 
 
     handleChange = (e) => {
@@ -42,12 +62,19 @@ class CurrentConversation extends React.Component {
 		(
 			<div className="selected-convo">
 			{this.renderMessages()}
+			<ActionCableConsumer
+	          channel={{ channel: 'ConversationsChannel' }}
+	          onReceived={(data) => console.log(data)}
+	          channel={{channel: 'MessagesChannel', conversation_id: this.props.id}}
+	        />
+		
 			<InputGroup className="mb-3" style={{paddingTop: 10}}>
 			    <FormControl
 			     onChange={this.handleChange} placeholder="Write a message..."
+			     
 			    />
 			    <InputGroup.Append>
-			      <Button variant="outline-secondary">Send</Button>
+			      <Button onClick={this.handleSubmit} variant="outline-secondary">Send</Button>
 			    </InputGroup.Append>
 			  </InputGroup>
 		</div>)

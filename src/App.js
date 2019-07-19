@@ -10,20 +10,50 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class App extends React.Component {
 
+state = {
+	conversations: []
+}
+
 componentDidMount(){
 		const token = localStorage.getItem("token")
+			fetch('http://localhost:3000/conversations')
+					.then(res => res.json())
+					.then(data => {
+						this.setState({
+							conversations: data
+				})
+			})
 		if(token){
 			this.props.autoLogin(token)
+
 	}
 }
+
+handleReceivedConversation = response => {
+    const { conversation } = response;
+    this.setState({
+      conversations: [...this.state.conversations, conversation]
+    })
+  }
+
+handleReceivedMessage = response => {
+	const { message } = response;
+	const conversations = [...this.state.conversations];
+	const conversation = conversations.find(
+	  conversation => conversation.id === message.conversation_id
+	)
+	conversation.messages = [...conversation.messages, message]
+	this.setState({ conversations })
+}
+
 
 render(){
 	console.log(this.props)
 	  	return (
 	  		<Router>
 			    <div className="App">
-			      <ConversationsContainer />
-			      <MainContainer />
+			      <ConversationsContainer handleReceivedMessage={this.handleReceivedMessage} handleReceivedConversation={this.handleReceivedConversation} conversations={this.state.conversations}/>
+			      <MainContainer conversations={this.state.conversations} />
 			    </div>
 		    </Router>
 	  	);

@@ -21,7 +21,7 @@ class MainContainer extends React.Component {
           	 <Route path="/login" component={ Login } />
              <Route path="/signup" component={ Signup } />
              <Route path='/home' component={ Home } />
-             <Route path='/conversations/:id' component={ CurrentConversation } />
+             <Route path='/conversations/:id' render={(routerProps) => <CurrentConversation conversations={this.props.conversations} {...routerProps} />} />
           </div>
         </div>
 
