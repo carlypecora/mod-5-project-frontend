@@ -40,7 +40,6 @@ renderItems = () => {
 }
 
 render(){
-	console.log("props", this.props)
   return (
 	    <div className="left-sidebar">
 	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}}>Flatiron Slackers</Link></h2>
