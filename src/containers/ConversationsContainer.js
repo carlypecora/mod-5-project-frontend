@@ -2,9 +2,7 @@ import React from 'react'
 import * as actions from '../actions/selectedConversation.js'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { ActionCable } from 'react-actioncable-provider'
-import Cable from '../components/Cable'
-
+import { ActionCableConsumer } from 'react-actioncable-provider'
 
 class ConversationsContainer extends React.Component {
 
@@ -19,14 +17,10 @@ renderItems = () => {
 		null
 	:
 	<div>
-		<ActionCable
+		<ActionCableConsumer
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.props.handleReceivedConversation}
         />
-          <Cable
-            conversations={this.props.conversations}
-            handleReceivedMessage={this.props.handleReceivedMessage}
-          />
 		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left'}}>Your Channels:</div>
 		<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughConversations()}

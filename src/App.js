@@ -4,7 +4,7 @@ import ConversationsContainer from './containers/ConversationsContainer'
 import MainContainer from './containers/MainContainer'
 import * as actions from './actions/autoLogin.js'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 

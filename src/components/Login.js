@@ -5,7 +5,7 @@ import * as actions from '../actions/login.js'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-let token = localStorage.getItem("token")
+// let token = localStorage.getItem("token")
 
 
 class Login extends React.Component {

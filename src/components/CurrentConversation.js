@@ -6,7 +6,6 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { ActionCableConsumer } from 'react-actioncable-provider';
-import Cable from './Cable';
 
 class CurrentConversation extends React.Component {
 
@@ -35,7 +34,7 @@ class CurrentConversation extends React.Component {
 	      },
 	      body: JSON.stringify({
 	        	text: this.state.message,
-	        	conversation_id: this.props.id,
+	        	conversation_id: this.props.currentConversation.id,
 	        	user_id: this.props.currentUser.id
 	      	})
 	    })
@@ -54,23 +53,27 @@ class CurrentConversation extends React.Component {
     }
 
 	renderMessages = () => {
-		return this.props.messages && this.props.messages.map(message => <Message key={message.id} {...message}/>)
+		return this.props.currentConversation.messages && this.props.currentConversation.messages.map(message => <Message key={message.id} {...message}/>)
 	}
 
 	renderEntireConversation = () => {
-		return this.props.messages && this.props.token ?
+		return this.props.currentConversation.messages && this.props.token ?
 		(
 			<div className="selected-convo">
 			{this.renderMessages()}
 			<ActionCableConsumer
 	          channel={{ channel: 'ConversationsChannel' }}
-	          onReceived={(data) => console.log(data)}
-	          channel={{channel: 'MessagesChannel', conversation_id: this.props.id}}
+	          onReceived={(data) => {
+	          	this.props.resetCurrentConversation(this.props.currentConversation, data)
+	          	this.setState({message: ''})
+	          	}
+	          }
+	          channel={{channel: 'MessagesChannel', conversation_id: this.props.currentConversation.id}}
 	        />
 		
 			<InputGroup className="mb-3" style={{paddingTop: 10}}>
 			    <FormControl
-			     onChange={this.handleChange} placeholder="Write a message..."
+			     onChange={this.handleChange} value={this.state.message} placeholder="Write a message..."
 			     
 			    />
 			    <InputGroup.Append>
@@ -85,6 +88,7 @@ class CurrentConversation extends React.Component {
 
 
 	render(){
+		console.log(this.props.currentConversation.messages)
 		return(
 			<div>
 				{this.renderEntireConversation()}
@@ -94,7 +98,9 @@ class CurrentConversation extends React.Component {
 }
 
 function mapStateToProps(state){
-	return ({...state.auth, ...state.selected.currentConversation})
+	return ({...state.auth, ...state.selected})
 }
+
+
 
 export default connect(mapStateToProps, actions)(CurrentConversation)
