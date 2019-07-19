@@ -5,9 +5,11 @@ import * as actions from '../actions/login.js'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+// let token = localStorage.getItem("token")
 
 
 class Login extends React.Component {
+
 
 	state = {
 		email: '',
@@ -30,36 +32,33 @@ class Login extends React.Component {
 	}
 
 	render(){
-		let token = localStorage.getItem("token")
-	    if (!!token) {
-	      return null
-	    } else if (!token) {
+		console.log('state', this.state, 'props', this.props)
 		return(
-			<div>
-				<div id="login-form">
-				<br/>
-				<h1>Login</h1>
-					<Form onSubmit={this.handleSubmit}>
-					  <Form.Group controlId="formBasicEmail">
-					    <Form.Label>Email address</Form.Label>
-					    <Form.Control onChange={this.handleChange} name="email" type="email" placeholder="Enter email" />
-					  </Form.Group>
+				<div>
+					<div id="login-form">
+					<br/>
+					<h1>Login</h1>
+						<Form onSubmit={this.handleSubmit}>
+						  <Form.Group controlId="formBasicEmail">
+						    <Form.Label>Email address</Form.Label>
+						    <Form.Control onChange={this.handleChange} name="email" type="email" placeholder="Enter email" />
+						  </Form.Group>
 
-					  <Form.Group controlId="formBasicPassword">
-					    <Form.Label>Password</Form.Label>
-					    <Form.Control onChange={this.handleChange} name="password" type="password" placeholder="Password" />
-					  </Form.Group>
-					  <Form.Group controlId="formBasicChecbox">
-					  </Form.Group>
-					  <Button variant="primary" type="submit">
-					    <Link to='/home' style={{color: 'white'}}>Submit</Link>
-					  </Button>
-					</Form>
+						  <Form.Group controlId="formBasicPassword">
+						    <Form.Label>Password</Form.Label>
+						    <Form.Control onChange={this.handleChange} name="password" type="password" placeholder="Password" />
+						  </Form.Group>
+						  <Form.Group controlId="formBasicChecbox">
+						  </Form.Group>
+						  <Button variant="primary" type="submit">
+						    <Link to='/home' style={{color: 'white'}}>Submit</Link>
+						  </Button>
+						</Form>
+					</div>
 				</div>
-			</div>
 			)
 		}
-	}	
+		
 }
 
 const mapStateToProps = (state) => {

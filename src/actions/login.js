@@ -15,7 +15,6 @@ export function login(userData, props) {
       })
     })
     .then(r => r.json())
-    // .then(console.log)
     .then(data => {
       if (data.message) {
         alert(data.message);

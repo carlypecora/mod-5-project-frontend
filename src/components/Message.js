@@ -16,7 +16,6 @@ class Message extends React.Component {
 	}
 
 	render(){
-		console.log(this.state)
 		return(
 			<div className="message">
 				<div className="asdf">
