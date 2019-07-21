@@ -48,7 +48,7 @@ handleReceivedMessage = response => {
 
 
 render(){
-	console.log(this.props)
+	// console.log(this.props)
 	  	return (
 	  		<Router>
 			    <div className="App">

@@ -1,5 +1,5 @@
 export function login(userData, props) {
-    
+    console.log("hit login reducer")
     return dispatch => {
     fetch('http://localhost:3000/login', {
       method: 'POST',
@@ -26,3 +26,21 @@ export function login(userData, props) {
     })
   }
 }
+
+// export function signin(state){
+//   return dispatch => {
+//     fetch('http://localhost:3000/users', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           Accept: 'application/json'
+//       },
+//         body: JSON.stringify({
+//           user: {
+
+//           }
+//         })
+//       }
+//     )
+//   }
+// }

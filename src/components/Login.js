@@ -32,13 +32,12 @@ class Login extends React.Component {
 	}
 
 	render(){
-		console.log('state', this.state, 'props', this.props)
 		return(
 				<div>
 					<div id="login-form">
 					<br/>
 					<h1>Login</h1>
-						<Form onSubmit={this.handleSubmit}>
+						<Form>
 						  <Form.Group controlId="formBasicEmail">
 						    <Form.Label>Email address</Form.Label>
 						    <Form.Control onChange={this.handleChange} name="email" type="email" placeholder="Enter email" />
@@ -51,7 +50,7 @@ class Login extends React.Component {
 						  <Form.Group controlId="formBasicChecbox">
 						  </Form.Group>
 						  <Button variant="primary" type="submit">
-						    <Link to='/home' style={{color: 'white'}}>Submit</Link>
+						    <Link to='/home' style={{color: 'white'}} onClick={this.handleSubmit}>Submit</Link>
 						  </Button>
 						</Form>
 					</div>
