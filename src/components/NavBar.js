@@ -30,7 +30,21 @@ const renderNavItems = (props) => {
     		</div>
 		)
 	} else {
-		return <Link onClick={() => handleLogout(props)} className="single-nav-link" to='/login'>Logout</Link>
+		return (
+			<div>
+		 	{props.title && window.location.pathname !== "/home"? 
+				<div className="nav-channel">
+					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Channel Name:</h6>&nbsp;&nbsp;&nbsp;
+					<div style={{display: 'inline'}}>{props.title}</div>&nbsp;&nbsp;&nbsp;
+					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Purpose:</h6>&nbsp;&nbsp;&nbsp;
+					<div style={{display: 'inline'}}>{props.purpose}</div>
+				</div>
+				:
+				null
+			}
+				<Link onClick={() => handleLogout(props)} className="single-nav-link" to='/login'>Logout</Link>
+			</div>
+			)
 	}
 }
 

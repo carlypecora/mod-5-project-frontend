@@ -3,6 +3,7 @@ import * as actions from '../actions/selectedConversation.js'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ActionCableConsumer } from 'react-actioncable-provider'
+import { IoIosAddCircleOutline } from "react-icons/io"
 
 class ConversationsContainer extends React.Component {
 
@@ -21,7 +22,7 @@ renderItems = () => {
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.props.handleReceivedConversation}
         />
-		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left'}}>Your Channels:</div>
+		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row'}}><div style={{display: 'inline'}}>Your Channels:&nbsp;</div><Link to="/conversations/new" id="icon" style={{color: 'white'}}><IoIosAddCircleOutline /></Link></div>
 		<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughConversations()}
 		</div>
@@ -32,7 +33,7 @@ renderItems = () => {
 render(){
   return (
 	    <div className="left-sidebar">
-	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}}>Flatiron Slackers</Link></h2>
+	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}} onClick={() => this.props.deselectConversation()}>Flatiron Slackers</Link></h2>
 	      
 	      <div style={{marginTop: 90, fontSize: 20}}>
 	        {this.renderItems()}

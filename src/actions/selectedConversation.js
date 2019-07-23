@@ -11,7 +11,12 @@ export function selectedConversation(convoId) {
 export function resetCurrentConversation(conversation, message){
 	return dispatch => {
 		conversation.messages = [...conversation.messages, message]
-		console.log(conversation)
 		dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: conversation}})
+	}
+}
+
+export function deselectConversation(){
+	return dispatch => {
+		dispatch({type: "DESELECT_CONVERSATION", payload: {currentConversation: {}}})
 	}
 }

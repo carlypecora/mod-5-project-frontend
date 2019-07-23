@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import * as actions from '../actions/login.js'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 // let token = localStorage.getItem("token")
 
@@ -37,7 +36,7 @@ class Login extends React.Component {
 					<div id="login-form">
 					<br/>
 					<h1>Login</h1>
-						<Form>
+						<Form onSubmit={this.handleSubmit}>
 						  <Form.Group controlId="formBasicEmail">
 						    <Form.Label>Email address</Form.Label>
 						    <Form.Control onChange={this.handleChange} name="email" type="email" placeholder="Enter email" />
@@ -50,23 +49,17 @@ class Login extends React.Component {
 						  <Form.Group controlId="formBasicChecbox">
 						  </Form.Group>
 						  <Button variant="primary" type="submit">
-						    <Link to='/home' style={{color: 'white'}} onClick={this.handleSubmit}>Submit</Link>
+						    Submit
 						  </Button>
 						</Form>
 					</div>
 				</div>
-			)
-		}
+		)
+	}
 		
 }
 
-const mapStateToProps = (state) => {
-  return {
-   ...state.auth
-  }
-}
-
-export default connect(mapStateToProps, actions)(Login)
+export default connect(null, actions)(Login)
 
 
 

@@ -88,7 +88,6 @@ class CurrentConversation extends React.Component {
 
 
 	render(){
-		console.log(this.props.currentConversation.messages)
 		return(
 			<div>
 				{this.renderEntireConversation()}

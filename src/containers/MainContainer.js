@@ -4,6 +4,7 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
+import ConversationForm from '../components/ConversationForm'
 import CurrentConversation from '../components/CurrentConversation'
 import { Route } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ class MainContainer extends React.Component {
           	 <Route path="/login" component={ Login } />
              <Route path="/signup" component={ Signup } />
              <Route path='/home' component={ Home } />
+             <Route exact path='/conversations/new' component={ ConversationForm } />
              <Route path='/conversations/:id' render={(routerProps) => <CurrentConversation conversations={this.props.conversations} {...routerProps} />} />
           </div>
         </div>

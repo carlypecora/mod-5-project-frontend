@@ -56,6 +56,14 @@ body{
 
 }
 
+.nav-channel {
+  flex-direction: row;
+  flex: 1; 
+  float: left;
+  margin-left: 20%;
+  margin-top: 0.5%;
+}
+
 .left-sidebar {
   float: left;
   width: 20%;
@@ -63,6 +71,10 @@ body{
   bottom: 0;
   top: 0;
   background: #0986a5;
+}
+
+svg:hover {
+  color: #b0e7f4;
 }
 
 .right-sidebar {
@@ -88,13 +100,11 @@ body{
 }
 
 #login-form {
-  margin-top: 10%;
   width: 50%;
   margin-left: 40%;
 }
 
 #sign-up-form {
-  margin-top: 10%;
   width: 50%;
   margin-left: 40%;
 }
@@ -145,3 +155,4 @@ body{
 .asdf {
   display: inline-flex;
 }
+
