@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 const NavBar = (props) => {
+	console.log(props)
 	return (
 	<div className="nav-bar">
 		<div className="nav-links">
@@ -37,12 +38,16 @@ const renderNavItems = (props) => {
 					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Channel Name:</h6>&nbsp;&nbsp;&nbsp;
 					<div style={{display: 'inline'}}>{props.title}</div>&nbsp;&nbsp;&nbsp;
 					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Purpose:</h6>&nbsp;&nbsp;&nbsp;
-					<div style={{display: 'inline'}}>{props.purpose}</div>
+					<div style={{display: 'inline'}}>{props.purpose}</div>&nbsp;&nbsp;&nbsp;
+					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Made By:</h6>&nbsp;&nbsp;&nbsp;
+					<div style={{display: 'inline'}}>{props.creator}</div>&nbsp;&nbsp;&nbsp;
+					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Created On:</h6>&nbsp;&nbsp;&nbsp;
+					<div style={{display: 'inline'}}>{props.created_at.slice(0, 10)}</div>&nbsp;&nbsp;&nbsp;
 				</div>
 				:
 				null
 			}
-				<Link onClick={() => handleLogout(props)} className="single-nav-link" to='/login'>Logout</Link>
+				<Link onClick={() => handleLogout(props)} className="single-nav-link" to='/login' style={{display: 'inline'}}>Logout</Link>
 			</div>
 			)
 	}

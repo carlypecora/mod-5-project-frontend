@@ -2,49 +2,50 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
+import * as actions from '../actions/selectedConversation.js'
+import { connect } from 'react-redux'
 
 class ConversationForm extends React.Component {
+
+	state = {
+		title: "",
+		purpose: ""
+	}
+
+	fullName = () => {
+		return `${this.props.first_name} ${this.props.last_name}`
+	}
+
+
+	handleChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		})
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+		this.props.createConversation(this.state, this.props, this.fullName())
+		this.setState({
+			title: "",
+			purpose: ""
+		})
+	}
+
 	render(){
 		return (
-			<Form>
-				<h1>Signup</h1>
-				  <Form.Row>
-				    <Form.Group as={Col} controlId="formGridFirstName">
-				      <Form.Label>First Name</Form.Label>
-				      <Form.Control name="first_name" type="text" placeholder="Enter First Name" onChange={this.handleChange}/>
-				    </Form.Group>
-
-				    <Form.Group as={Col} controlId="formGridLastName">
-				      <Form.Label>Last Name</Form.Label>
-				      <Form.Control name="last_name" type="text" placeholder="Enter Last Name" onChange={this.handleChange}/>
-				    </Form.Group>
-				  </Form.Row>
+			<Form id="convo-form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+				<h1>Create a New Channel</h1>
 
 				  <Form.Group controlId="formGridAEmail">
-				    <Form.Label>Email</Form.Label>
-				    <Form.Control name="email" type="email" placeholder="Email" onChange={this.handleChange}/>
+				    <Form.Label>Channel Title</Form.Label>
+				    <Form.Control name="title" type="text" placeholder="Title" />
 				  </Form.Group>
 
 				  <Form.Group controlId="formGridAPassword">
-				    <Form.Label>Password</Form.Label>
-				    <Form.Control name="password" type="password" placeholder="Password" onChange={this.handlePasswordChange}/>
+				    <Form.Label>Purpose</Form.Label>
+				    <Form.Control name="purpose" type="text" placeholder="Purpose" />
 				  </Form.Group>
-
-				  <Form.Group controlId="formGridPassword2">
-				    <Form.Label>Confirm Password</Form.Label>
-				    <Form.Control name="password_confirmation" type="password" placeholder="Confirm Password" onChange={this.handlePasswordChange}/>
-				  </Form.Group>
-
-				  <Form.Group controlId="exampleForm.ControlTextarea1">
-				    <Form.Label>Bio</Form.Label>
-				    <Form.Control name="bio" as="textarea" rows="3" onChange={this.handleChange}/>
-				  </Form.Group>
-
-				  	<div className="foo">
-				  		<div className="upload-file">
-				      		Upload Profile Picture: &ensp; <input className="upload-file-button" type="file"  />
-				      	</div>
-				    </div>
 
 				    <br />
 				    <br />
@@ -58,4 +59,9 @@ class ConversationForm extends React.Component {
 	}
 }
 
-export default ConversationForm
+
+function mapStateToProps(state){
+	return({...state.auth.currentUser})
+}
+
+export default connect(mapStateToProps, actions)(ConversationForm)

@@ -30,9 +30,8 @@ componentDidMount(){
 }
 
 handleReceivedConversation = response => {
-    const { conversation } = response;
     this.setState({
-      conversations: [...this.state.conversations, conversation]
+      conversations: [...this.state.conversations, response]
     })
   }
 
@@ -48,7 +47,6 @@ handleReceivedMessage = response => {
 
 
 render(){
-	// console.log(this.props)
 	  	return (
 	  		<Router>
 			    <div className="App">

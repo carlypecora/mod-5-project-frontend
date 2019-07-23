@@ -22,7 +22,7 @@ renderItems = () => {
           channel={{ channel: 'ConversationsChannel' }}
           onReceived={this.props.handleReceivedConversation}
         />
-		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row'}}><div style={{display: 'inline'}}>Your Channels:&nbsp;</div><Link to="/conversations/new" id="icon" style={{color: 'white'}}><IoIosAddCircleOutline /></Link></div>
+		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row'}}><div style={{display: 'inline'}}>Your Channels:&nbsp;</div><Link to="/conversations/new" id="icon" style={{color: 'white'}} onClick={() => this.props.deselectConversation()}><IoIosAddCircleOutline /></Link></div>
 		<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughConversations()}
 		</div>
