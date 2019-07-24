@@ -4,6 +4,7 @@ import * as actions from '../actions/selectedConversation.js'
 import { connect } from 'react-redux'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
@@ -70,16 +71,17 @@ class CurrentConversation extends React.Component {
 	          }
 	          channel={{channel: 'MessagesChannel', conversation_id: this.props.currentConversation.id}}
 	        />
-		
-			<InputGroup className="mb-3" style={{paddingTop: 10}}>
+			<Form onSubmit={this.handleSubmit}>
+			  <InputGroup className="mb-3" style={{paddingTop: 10}}>
 			    <FormControl
 			     onChange={this.handleChange} value={this.state.message} placeholder="Write a message..."
 			     
 			    />
 			    <InputGroup.Append>
-			      <Button onClick={this.handleSubmit} variant="outline-secondary">Send</Button>
+			      <Button variant="outline-secondary">Send</Button>
 			    </InputGroup.Append>
 			  </InputGroup>
+			</Form>
 		</div>)
 		:
 		null
