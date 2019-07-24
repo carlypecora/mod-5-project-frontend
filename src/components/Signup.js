@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import * as actions from '../actions/login.js'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
 
 

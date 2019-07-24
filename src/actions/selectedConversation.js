@@ -42,3 +42,20 @@ export function createConversation(userData, props, userName){
 		})
 	}
 }
+
+export function joinConversation(userId, convoId){
+	return dispatch => {
+		fetch("http://localhost:3000/join_conversation", {
+	      method: 'POST',
+	      headers: {
+	        'Content-Type': 'application/json',
+	        Accept: 'application/json'
+	      },
+	      body: JSON.stringify({
+	          user_id: userId,
+	          convo_id: convoId
+	    	})
+	 	})
+	}
+
+}

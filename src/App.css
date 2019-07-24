@@ -76,6 +76,7 @@ body{
 
 svg:hover {
   color: #b0e7f4;
+  cursor: pointer;
 }
 
 .right-sidebar {
