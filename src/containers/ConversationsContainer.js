@@ -13,6 +13,7 @@ class ConversationsContainer extends React.Component {
 	}
 
 mapThroughAllConversations = () => {
+
 	let userConvoIds = this.props.currentUser.conversations.map(convo => convo.id)
 	let diff = this.props.conversations.filter(x => !userConvoIds.includes(x.id))
 	return diff.map(conversation => {
@@ -21,7 +22,8 @@ mapThroughAllConversations = () => {
 }
 
 mapThroughConversations = () => {
-	if (!!this.props.currentUser){
+	if (!!this.props.currentUser.conversations){
+
 	return this.props.currentUser.conversations.map(conversation => {
 		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white'}}>{conversation.title}</Link></div>
 		})
@@ -60,6 +62,8 @@ handleClick = () => {
 }
 
 render(){
+	console.log("CONVOCONT", this.props.currentUser)
+
   return (
 	    <div className="left-sidebar">
 	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}} onClick={() => this.props.deselectConversation()}>Flatiron Slackers</Link></h2>

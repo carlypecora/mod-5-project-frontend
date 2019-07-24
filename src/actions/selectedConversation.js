@@ -36,15 +36,16 @@ export function createConversation(userData, props, userName){
 	  })
 		.then(res => res.json())
 		.then(data => {
-			console.log(data)
-			props.history.push(`/conversations${data.id}`)
+			props.history.push(`/conversations/${data.id}`)
 			dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: data}})
+			
 		})
 	}
 }
 
-export function joinConversation(userId, convoId){
+export function joinConversation(user, convo, props){
 	return dispatch => {
+		user.conversations = [...user.conversations, convo]
 		fetch("http://localhost:3000/join_conversation", {
 	      method: 'POST',
 	      headers: {
@@ -52,10 +53,15 @@ export function joinConversation(userId, convoId){
 	        Accept: 'application/json'
 	      },
 	      body: JSON.stringify({
-	          user_id: userId,
-	          convo_id: convoId
+	          user_id: user.id,
+	          conversation_id: convo.id
 	    	})
 	 	})
+	 	.then(res => res.json())
+		.then(data => {
+			console.log(user)
+			dispatch({type: "RESET_USER", payload: {user: user}})
+		})
 	}
 
 }

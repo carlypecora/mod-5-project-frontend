@@ -51,7 +51,7 @@ render(){
 	  		<Router>
 			    <div className="App">
 			      <ConversationsContainer handleReceivedMessage={this.handleReceivedMessage} handleReceivedConversation={this.handleReceivedConversation} conversations={this.state.conversations}/>
-			      <MainContainer conversations={this.state.conversations} />
+			      <MainContainer handleReceivedConversation={this.handleReceivedConversation} conversations={this.state.conversations} />
 			    </div>
 		    </Router>
 	  	);
