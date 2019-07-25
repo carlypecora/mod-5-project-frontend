@@ -16,17 +16,18 @@ class ConversationsContainer extends React.Component {
 mapThroughAllConversations = () => {
 
 	let userConvoIds = this.props.currentUser.conversations.map(convo => convo.id)
-	let diff = this.props.conversations.filter(x => !userConvoIds.includes(x.id))
+	let removeDms = this.props.conversations.filter(convo => !convo.dm)
+	let diff = removeDms.filter(x => !userConvoIds.includes(x.id))
 	return diff.map(conversation => {
-		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white'}}>{conversation.title}</Link></div>
+		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white', fontSize: 15}}>{conversation.title}</Link></div>
 	})
 }
 
 mapThroughConversations = () => {
 	if (!!this.props.currentUser.conversations){
-
-	return this.props.currentUser.conversations.map(conversation => {
-		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white'}}>{conversation.title}</Link></div>
+	let removeDms = this.props.currentUser.conversations.filter(convo => !convo.dm)
+	return removeDms.map(conversation => {
+		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white', fontSize: 15}}>{conversation.title}</Link></div>
 		})
 	} else {
 		return null
@@ -41,7 +42,7 @@ renderUserItems = () => {
           onReceived={this.props.handleReceivedConversation}
         />
 		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row'}}><div style={{display: 'inline'}}>Your Channels:&nbsp;</div><Link to="/conversations/new" className="icon" style={{color: 'white'}} onClick={() => this.props.deselectConversation()}><IoIosAddCircleOutline /></Link></div>
-		<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
+		<div style={{marginRight: 50,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughConversations()}
 		</div>
 	</div>
@@ -50,7 +51,7 @@ renderUserItems = () => {
 
 renderAllItems = () => {
 	return (
-	<div style={{marginRight: 110,  textAlign: 'right', fontSize: 20}}>
+	<div style={{marginRight: 50,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughAllConversations()}
 	</div>
 	)
@@ -60,6 +61,28 @@ handleClick = () => {
 	this.setState({
 		viewAllConvos: !this.state.viewAllConvos
 	})
+}
+
+mapThroughDms = () => {
+
+	console.log(this.props.conversations)
+	let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm)
+	console.log(dms)
+	return dms.map(dm => <div><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)} style={{color: 'white', fontSize: 15}}>{dm.title}</Link></div>)
+}
+
+renderDms = () => {
+	return(
+		<div>
+			<div style={{marginRight: 50,  textAlign: 'right', fontSize: 20, display: 'block'}}>
+		   	  	<ActionCableConsumer
+		          channel={{ channel: 'ConversationsChannel' }}
+		          onReceived={this.props.handleReceivedConversation}
+		        />
+		   	  	{this.mapThroughDms()}
+		   	</div>
+	   	</div>
+	)
 }
 
 render(){
@@ -78,8 +101,9 @@ render(){
 	   	  			this.renderAllItems()
 	   	  			:
 	   	  			null
-	   	  		}
+	   	  		}	
 	   	  		<div style={{flexDirection: 'row', textAlign: 'left', marginLeft: 20, marginTop: 40}}><div style={{color: 'white', fontWeight: 'bold', display: 'inline'}}>Dms&nbsp;</div><Link to="/dm/new" onClick={() => this.props.deselectConversation()} className="icon" style={{color: 'white'}}><IoIosAddCircleOutline /></Link></div>
+	   	  		{this.renderDms()}
 	   	  	</div>
 	   	  }
 	    </div>

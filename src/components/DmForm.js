@@ -14,7 +14,7 @@ class DmForm extends React.Component {
 	}
 
 	filterUsers = (users) => {
-		return users.filter(user => user.first_name.includes(this.state.searchUser))
+		return users.filter(user => user.first_name.toLowerCase().includes(this.state.searchUser.toLowerCase()))
 	}
 
 	handleChange = (e) => {
@@ -80,6 +80,15 @@ class DmForm extends React.Component {
 		})
 	}
 
+	handleSubmit = () => {
+		this.props.createDm(this.state.dmUsers, this.props.currentUser, this.props)
+		this.setState({
+			users: [],
+			searchUser: "",
+			dmUsers: []
+		})
+	}
+
 
 render(){
 	return (
@@ -102,7 +111,7 @@ render(){
 		    <br />
 
 
-		  <Button onClick={() => this.props.createDm(this.state.dmUsers, this.props.currentUser)} variant="primary">
+		  <Button onClick={this.handleSubmit} variant="primary">
 		  	Begin Direct Message
 		  </Button>
 		</Form>

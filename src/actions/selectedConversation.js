@@ -65,9 +65,29 @@ export function joinConversation(user, convo, props){
 	}
 }
 
-export function createDm(dmUsers, currentUser){
+export function createDm(dmUsers, currentUser, props){
 	return dispatch => {
 	let ids = dmUsers.map(user => user.id)
-	console.log(ids)
+	let allIds = [...ids, currentUser.id]
+	let names = dmUsers.map(user => user.first_name).join(", ")
+	console.log(names)
+	fetch("http://localhost:3000/create_dm", {
+		  method: 'POST',
+	      headers: {
+	        'Content-Type': 'application/json',
+	        Accept: 'application/json'
+	      },
+	      body: JSON.stringify({
+	      		title: `dm with ${names}, ${currentUser.first_name}`,
+	      		dm: true,
+	      		user_ids: allIds
+	      	})
+		})
+		.then(res => res.json())
+		.then(data =>{
+			props.history.push(`/conversations/${data.id}`)
+			currentUser.conversations = [...currentUser.conversations, data]
+			dispatch({type: "RESET_USER", payload: {user: {...currentUser}}})
+		})
 	}
 }

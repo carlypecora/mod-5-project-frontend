@@ -84,7 +84,7 @@ svg:hover {
   width: 20%;
   position: absolute;
   bottom: 0;
-  top: 75px;
+  top: 3em;
   border-left: 0.5px solid gray;
 }
 
