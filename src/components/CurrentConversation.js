@@ -57,7 +57,9 @@ class CurrentConversation extends React.Component {
 	}
 
 	handleJoinClick = () => {
+		
 		this.props.joinConversation(this.props.currentUser, this.props.currentConversation, this.props)
+			
 	}
 
 	renderMessageForm = () => {
@@ -103,7 +105,6 @@ class CurrentConversation extends React.Component {
 
 
 	render(){
-		console.log(this.props.currentUser)
 		return(
 			<div>
 				{this.renderEntireConversation()}

@@ -41,7 +41,7 @@ export function signup(userData, props, password){
           email: userData.email,
           password: password,
           bio: userData.bio,
-          photo_url:userData.photo_url
+          photo_url: userData.photo_url
       })
     })
     .then(res => res.json())
@@ -49,6 +49,7 @@ export function signup(userData, props, password){
       if (data.errors) {
         alert(data.errors);
       } else {
+        console.log(data)
         localStorage.setItem("token", data.token);
         props.history.push('/home')
         dispatch({type: "LOG_IN", payload: {user: data.user, jwt: data.token}})

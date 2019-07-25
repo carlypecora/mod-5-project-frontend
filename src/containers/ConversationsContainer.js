@@ -9,7 +9,8 @@ class ConversationsContainer extends React.Component {
 
 	state = {
 
-		viewAllConvos: false
+		viewAllConvos: false,
+		
 	}
 
 mapThroughAllConversations = () => {
@@ -62,8 +63,6 @@ handleClick = () => {
 }
 
 render(){
-	console.log("CONVOCONT", this.props.currentUser)
-
   return (
 	    <div className="left-sidebar">
 	    <h2 style={{marginTop: 5}}><Link to="/home" style={{color: 'white', fontWeight: 'bold'}} onClick={() => this.props.deselectConversation()}>Flatiron Slackers</Link></h2>
@@ -74,12 +73,13 @@ render(){
 		      	<div style={{marginTop: 90, fontSize: 20}}>
 		        	{this.renderUserItems()}
 		      	</div>
-		       	<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row', marginTop: 40}}>All Channels:&nbsp;<div onClick={this.handleClick}><IoIosAddCircleOutline /></div></div>
+		       	<div style={{flexDirection: 'row', textAlign: 'left', marginLeft: 20, marginTop: 40}}><div style={{color: 'white', fontWeight: 'bold', display: 'inline'}}>All Channels&nbsp;<div onClick={this.handleClick} style={{display: 'inline'}}><IoIosAddCircleOutline /></div></div></div>
 	   	  		{this.state.viewAllConvos ?
 	   	  			this.renderAllItems()
 	   	  			:
 	   	  			null
 	   	  		}
+	   	  		<div style={{flexDirection: 'row', textAlign: 'left', marginLeft: 20, marginTop: 40}}><div style={{color: 'white', fontWeight: 'bold', display: 'inline'}}>Dms&nbsp;</div><Link to="/dm/new" onClick={() => this.props.deselectConversation()} className="icon" style={{color: 'white'}}><IoIosAddCircleOutline /></Link></div>
 	   	  	</div>
 	   	  }
 	    </div>

@@ -14,7 +14,7 @@ return !props.token ?
       
       <div id="profile-card">
 		<Card style={{ width: '18rem' }}>
-		  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+		  <Card.Img variant="top" src={props.currentUser.photo_url} />
 		  <Card.Body>
 		    <Card.Title>{props.currentUser.first_name} {props.currentUser.last_name}</Card.Title>
 		  </Card.Body>

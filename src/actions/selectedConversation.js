@@ -20,7 +20,7 @@ export function deselectConversation(){
 	}
 }
 
-export function createConversation(userData, props, userName){
+export function createConversation(userData, props, userName, user){
 	return dispatch => {
 		fetch("http://localhost:3000/conversations", {
 	      method: 'POST',
@@ -36,8 +36,9 @@ export function createConversation(userData, props, userName){
 	  })
 		.then(res => res.json())
 		.then(data => {
+			user.conversations = [...user.conversations, data]
 			props.history.push(`/conversations/${data.id}`)
-			dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: data}})
+			dispatch({type: "RESET_USER", payload: {user: {...user}}})
 			
 		})
 	}
@@ -59,9 +60,14 @@ export function joinConversation(user, convo, props){
 	 	})
 	 	.then(res => res.json())
 		.then(data => {
-			console.log(user)
-			dispatch({type: "RESET_USER", payload: {user: user}})
+			dispatch({type: "RESET_USER", payload: {user: {...user}}})
 		})
 	}
+}
 
+export function createDm(dmUsers, currentUser){
+	return dispatch => {
+	let ids = dmUsers.map(user => user.id)
+	console.log(ids)
+	}
 }
