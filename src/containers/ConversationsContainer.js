@@ -37,10 +37,6 @@ mapThroughConversations = () => {
 renderUserItems = () => {
 	return (
 	<div>
-		<ActionCableConsumer
-          channel={{ channel: 'ConversationsChannel' }}
-          onReceived={this.props.handleReceivedConversation}
-        />
 		<div style={{color: 'white', fontWeight: 'bold', marginLeft: 20, textAlign: 'left', flexDirection: 'row'}}><div style={{display: 'inline'}}>Your Channels:&nbsp;</div><Link to="/conversations/new" className="icon" style={{color: 'white'}} onClick={() => this.props.deselectConversation()}><IoIosAddCircleOutline /></Link></div>
 		<div style={{marginRight: 50,  textAlign: 'right', fontSize: 20}}>
 			{this.mapThroughConversations()}
@@ -75,10 +71,6 @@ renderDms = () => {
 	return(
 		<div>
 			<div style={{marginRight: 50,  textAlign: 'right', fontSize: 20, display: 'block'}}>
-		   	  	<ActionCableConsumer
-		          channel={{ channel: 'ConversationsChannel' }}
-		          onReceived={this.props.handleReceivedConversation}
-		        />
 		   	  	{this.mapThroughDms()}
 		   	</div>
 	   	</div>
@@ -93,6 +85,10 @@ render(){
 	      	null
 	      	:
 	      	<div>
+	      		<ActionCableConsumer
+		          channel={{ channel: 'ConversationsChannel' }}
+		          onReceived={this.props.handleReceivedConversation}
+		        />
 		      	<div style={{marginTop: 90, fontSize: 20}}>
 		        	{this.renderUserItems()}
 		      	</div>
