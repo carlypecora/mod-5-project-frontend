@@ -44,6 +44,24 @@ export function createConversation(userData, props, userName, user){
 	}
 }
 
+export function selectUser(user_id){
+
+	return dispatch => {
+		fetch(`http://localhost:3000/users/${user_id}`)
+		.then(res => res.json())
+		.then(data => {
+			dispatch({type: "SELECT_USER", payload: {selectedUser: data}})
+
+		})
+	}
+}
+
+export function resetSelectedUser(currentUser){
+	return dispatch => {
+		dispatch({type: "SELECT_USER", payload: {selectedUser: currentUser}})
+	}
+}
+
 export function joinConversation(user, convo, props){
 	return dispatch => {
 		user.conversations = [...user.conversations, convo]

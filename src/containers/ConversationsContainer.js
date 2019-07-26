@@ -13,6 +13,12 @@ class ConversationsContainer extends React.Component {
 		
 	}
 
+// checkForUnreadMsg = (conversation) => {
+// 		let con = this.props.conversations.find(convo => convo.id === conversation.id)
+// 		let unreadMsgs = con.messages.filter(msg => !msg.read)
+// 		return unreadMsgs.length > 0 ? true : false
+// }
+
 mapThroughAllConversations = () => {
 
 	let userConvoIds = this.props.currentUser.conversations.map(convo => convo.id)
@@ -27,7 +33,10 @@ mapThroughConversations = () => {
 	if (!!this.props.currentUser.conversations){
 	let removeDms = this.props.currentUser.conversations.filter(convo => !convo.dm)
 	return removeDms.map(conversation => {
-		return <div key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white', fontSize: 15}}>{conversation.title}</Link></div>
+		return (
+			<div key={conversation.id}>
+				<Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)} style={{color: 'white', fontSize: 15}}><div>{conversation.title}</div></Link>
+			</div>)
 		})
 	} else {
 		return null
@@ -62,7 +71,7 @@ handleClick = () => {
 mapThroughDms = () => {
 
 	let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm)
-	return dms.map(dm => <div><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)} style={{color: 'white', fontSize: 15}}>{dm.title}</Link></div>)
+	return dms.map(dm => <div key={dm.id}><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)} style={{color: 'white', fontSize: 15}}>{dm.title}</Link></div>)
 }
 
 renderDms = () => {
