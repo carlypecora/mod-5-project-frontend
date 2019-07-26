@@ -76,6 +76,7 @@ body{
 
 svg:hover {
   color: #b0e7f4;
+  cursor: pointer;
 }
 
 .right-sidebar {
@@ -83,7 +84,7 @@ svg:hover {
   width: 20%;
   position: absolute;
   bottom: 0;
-  top: 75px;
+  top: 3em;
   border-left: 0.5px solid gray;
 }
 
@@ -162,5 +163,30 @@ svg:hover {
 
 .asdf {
   display: inline-flex;
+}
+
+.dm-user-border {
+  border: 0.5px solid #e5eae8;
+  border-radius: 2.5%;
+}
+
+.dm-choose-user-border {
+  border-bottom: 0.5px solid #e5eae8;
+}
+
+.dm-user:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+/*.all-chosen {
+  flex-direction: row;
+}*/
+
+.chosen {
+  flex-direction: row;
+  padding: 1%;
+  border: 0.5px solid #e5eae8;
+  border-radius: 5%;
 }
 

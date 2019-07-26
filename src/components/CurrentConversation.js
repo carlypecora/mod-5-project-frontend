@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button'
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
 class CurrentConversation extends React.Component {
-
 	state ={
 		message: ""
 	}
@@ -57,6 +56,30 @@ class CurrentConversation extends React.Component {
 		return this.props.currentConversation.messages && this.props.currentConversation.messages.map(message => <Message key={message.id} {...message}/>)
 	}
 
+	handleJoinClick = () => {
+		
+		this.props.joinConversation(this.props.currentUser, this.props.currentConversation, this.props)
+			
+	}
+
+	renderMessageForm = () => {
+		let userConvoIds = this.props.currentUser.conversations.map(convo => convo.id)
+		return userConvoIds.includes(this.props.currentConversation.id) ?
+				(<Form onSubmit={this.handleSubmit}>
+				  <InputGroup className="mb-3" style={{paddingTop: 10}}>
+				    <FormControl
+				     onChange={this.handleChange} value={this.state.message} placeholder="Write a message..."
+				     
+				    />
+				    <InputGroup.Append>
+				      <Button type="submit" variant="outline-secondary">Send</Button>
+				    </InputGroup.Append>
+				  </InputGroup>
+				</Form>)
+				: 
+			 <Button onClick={this.handleJoinClick} variant="outline-secondary">Join Channel?</Button>
+		}
+
 	renderEntireConversation = () => {
 		return this.props.currentConversation.messages && this.props.token ?
 		(
@@ -71,17 +94,9 @@ class CurrentConversation extends React.Component {
 	          }
 	          channel={{channel: 'MessagesChannel', conversation_id: this.props.currentConversation.id}}
 	        />
-			<Form onSubmit={this.handleSubmit}>
-			  <InputGroup className="mb-3" style={{paddingTop: 10}}>
-			    <FormControl
-			     onChange={this.handleChange} value={this.state.message} placeholder="Write a message..."
-			     
-			    />
-			    <InputGroup.Append>
-			      <Button variant="outline-secondary">Send</Button>
-			    </InputGroup.Append>
-			  </InputGroup>
-			</Form>
+	        {this.renderMessageForm()}
+			
+			
 		</div>)
 		:
 		null

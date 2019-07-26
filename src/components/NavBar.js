@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 
 const NavBar = (props) => {
-	console.log(props)
 	return (
 	<div className="nav-bar">
 		<div className="nav-links">

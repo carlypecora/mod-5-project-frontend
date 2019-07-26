@@ -30,9 +30,13 @@ componentDidMount(){
 }
 
 handleReceivedConversation = response => {
-    this.setState({
+	if (!!response.dm){
+		this.props.resetUserForDms(this.props.currentUser, response) 
+	} else {
+		this.setState({
       conversations: [...this.state.conversations, response]
-    })
+    	})
+	}
   }
 
 handleReceivedMessage = response => {
@@ -51,11 +55,16 @@ render(){
 	  		<Router>
 			    <div className="App">
 			      <ConversationsContainer handleReceivedMessage={this.handleReceivedMessage} handleReceivedConversation={this.handleReceivedConversation} conversations={this.state.conversations}/>
-			      <MainContainer conversations={this.state.conversations} />
+			      <MainContainer handleReceivedConversation={this.handleReceivedConversation} conversations={this.state.conversations} />
 			    </div>
 		    </Router>
 	  	);
 	}
 }
 
-export default connect(null, actions)(App);
+
+function mapStateToProps(state){
+	return ({...state.auth})
+}
+
+export default connect(mapStateToProps, actions)(App);

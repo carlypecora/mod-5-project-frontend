@@ -1,7 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
 import * as actions from '../actions/selectedConversation.js'
 import { connect } from 'react-redux'
 
@@ -13,7 +12,7 @@ class ConversationForm extends React.Component {
 	}
 
 	fullName = () => {
-		return `${this.props.first_name} ${this.props.last_name}`
+		return `${this.props.currentUser.first_name} ${this.props.currentUser.last_name}`
 	}
 
 
@@ -25,7 +24,7 @@ class ConversationForm extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		this.props.createConversation(this.state, this.props, this.fullName())
+		this.props.createConversation(this.state, this.props, this.fullName(), this.props.currentUser)
 		this.setState({
 			title: "",
 			purpose: ""
@@ -34,7 +33,7 @@ class ConversationForm extends React.Component {
 
 	render(){
 		return (
-			<Form id="convo-form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+			<Form id="convo-form" style={{marginTop: 40}} onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				<h1>Create a New Channel</h1>
 
 				  <Form.Group controlId="formGridAEmail">
@@ -61,7 +60,7 @@ class ConversationForm extends React.Component {
 
 
 function mapStateToProps(state){
-	return({...state.auth.currentUser})
+	return({...state.auth})
 }
 
 export default connect(mapStateToProps, actions)(ConversationForm)

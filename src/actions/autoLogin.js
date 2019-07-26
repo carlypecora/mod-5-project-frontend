@@ -18,3 +18,10 @@ export function autoLogin(token) {
     })
   }
 }
+
+export function resetUserForDms(user, convo){
+  return dispatch =>{
+    user.conversations = [...user.conversations, convo]
+    dispatch({type: "RESET_USER", payload: {user: {...user}}})
+  }
+}

@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import * as actions from '../actions/login.js'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import CryptoJS from 'crypto-js'
 
 
@@ -18,7 +17,7 @@ class Signup extends React.Component {
 		password: "",
 		password_confirmation: "",
 		bio: "",
-		photo_url:""
+		photo_url: ""
 	}
 
 	handleChange = (e) => {
@@ -32,6 +31,21 @@ class Signup extends React.Component {
 		this.setState({
 			[e.target.name]: encodedSource
 		})
+	}
+
+	handlePhotoChange = (e) => {
+		const files = e.target.files
+		const data = new FormData()
+		data.append('file', files[0])
+		data.append('upload_preset', 'hello_world')
+		const res = fetch('https://api.cloudinary.com/v1_1/dyd4wpdbo/image/upload', {
+				method: 'POST',
+				body: data
+			}
+
+		)
+		.then(res => res.json())
+		.then(data => this.setState({ photo_url: data.secure_url }))
 	}
 	
 
@@ -58,6 +72,7 @@ class Signup extends React.Component {
 	}
 
 	render(){
+		console.log(this.state)
 		return(
 			<div>
 				<br/>
@@ -98,7 +113,7 @@ class Signup extends React.Component {
 
 				  	<div className="foo">
 				  		<div className="upload-file">
-				      		Upload Profile Picture: &ensp; <input className="upload-file-button" type="file"  />
+				      		Upload Profile Picture: &ensp; <input className="upload-file-button" type="file" name="file" placeholder="Upload Image" onChange={this.handlePhotoChange} />
 				      	</div>
 				    </div>
 
