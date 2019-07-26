@@ -86,8 +86,8 @@ export function createDm(dmUsers, currentUser, props){
 		.then(res => res.json())
 		.then(data =>{
 			props.history.push(`/conversations/${data.id}`)
-			currentUser.conversations = [...currentUser.conversations, data]
-			dispatch({type: "RESET_USER", payload: {user: {...currentUser}}})
+			// currentUser.conversations = [...currentUser.conversations, data]
+			// dispatch({type: "RESET_USER", payload: {user: {...currentUser}}})
 		})
 	}
 }

@@ -61,9 +61,7 @@ handleClick = () => {
 
 mapThroughDms = () => {
 
-	console.log(this.props.conversations)
 	let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm)
-	console.log(dms)
 	return dms.map(dm => <div><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)} style={{color: 'white', fontSize: 15}}>{dm.title}</Link></div>)
 }
 
