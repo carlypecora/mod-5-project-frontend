@@ -30,16 +30,18 @@ componentDidMount(){
 }
 
 handleReceivedConversation = response => {
+	console.log("convo response", response)
 	if (!!response.dm){
 		this.props.resetUserForDms(this.props.currentUser, response) 
 	} else {
 		this.setState({
-      conversations: [...this.state.conversations, response]
+      		conversations: [...this.state.conversations, response]
     	})
 	}
   }
 
 handleReceivedMessage = response => {
+	console.log("msg response")
 	const { message } = response;
 	const conversations = [...this.state.conversations];
 	const conversation = conversations.find(

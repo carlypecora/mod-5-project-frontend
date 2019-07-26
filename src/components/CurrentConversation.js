@@ -86,7 +86,6 @@ class CurrentConversation extends React.Component {
 			<div className="selected-convo">
 			{this.renderMessages()}
 			<ActionCableConsumer
-	          channel={{ channel: 'ConversationsChannel' }}
 	          onReceived={(data) => {
 	          	this.props.resetCurrentConversation(this.props.currentConversation, data)
 	          	this.setState({message: ''})

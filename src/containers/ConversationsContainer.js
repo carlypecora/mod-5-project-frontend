@@ -84,6 +84,10 @@ renderDms = () => {
 	)
 }
 
+handleMessage =(mess)=>{
+	console.log(mess)
+}
+
 render(){
   return (
 	    <div className="left-sidebar">
@@ -95,7 +99,11 @@ render(){
 	      		<ActionCableConsumer
 		          channel={{ channel: 'ConversationsChannel' }}
 		          onReceived={this.props.handleReceivedConversation}
+		        /><ActionCableConsumer
+		          channel={{ channel: 'MessagessChannel' }}
+		          onReceived={(mess) => this.handleMessage(mess)}
 		        />
+		        
 		      	<div style={{marginTop: 90, fontSize: 20}}>
 		        	{this.renderUserItems()}
 		      	</div>
