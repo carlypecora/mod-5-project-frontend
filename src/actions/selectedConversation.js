@@ -8,7 +8,6 @@ export function selectedConversation(convoId) {
 }
 
 export function resetCurrentConversation(conversation, message){
-	console.log(message)
 	return dispatch => {
 		conversation.messages = [...conversation.messages, message]
 		dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: conversation}})
