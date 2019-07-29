@@ -19,7 +19,6 @@ return !props.token ?
 }
 
 const renderItems = (props) => {
-	console.log(props)
 	if (!!props.notifications) {
 		return <div> notifications </div>
 	} else {
