@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions/logout.js'
+import Notifications from './Notifications'
 import { Link } from 'react-router-dom'
 
 
@@ -31,7 +32,7 @@ const renderNavItems = (props) => {
 		)
 	} else {
 		return (
-			<div>
+			<div style={{flexDirection: 'row'}}>
 		 	{props.title && window.location.pathname !== "/home"? 
 				<div className="nav-channel">
 					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Channel Name:</h6>&nbsp;&nbsp;&nbsp;
@@ -46,7 +47,10 @@ const renderNavItems = (props) => {
 				:
 				null
 			}
-				<Link onClick={() => handleLogout(props)} className="single-nav-link" to='/login' style={{display: 'inline'}}>Logout</Link>
+				<div style={{flexDirection: 'row', marginTop: 5, display: 'inline', float: 'right'}}>
+					<div style={{color: '#0986a5', display: 'inline', textAlign: 'right', fontSize: 20, marginRight: 10}}><Notifications /></div>
+					<Link onClick={() => handleLogout(props)} to='/login' style={{display: 'inline', marginRight: 10}}>Logout</Link>
+				</div>
 			</div>
 			)
 	}

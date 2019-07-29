@@ -109,3 +109,16 @@ export function createDm(dmUsers, currentUser, props){
 		})
 	}
 }
+
+export function viewNotifications(){
+	return dispatch => {
+		dispatch({type: "VIEW_NOTIFICATIONS", payload: {notifications: "lskdhfHJSAH"}})
+	}
+}
+
+export function hideNotifications(){
+	return dispatch => {
+		dispatch({type: "VIEW_NOTIFICATIONS", payload: {notifications: null}})
+	}
+}
+
