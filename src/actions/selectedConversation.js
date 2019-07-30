@@ -122,7 +122,7 @@ export function hideNotifications(){
 	}
 }
 
-export function createNotification(title, Id){
+export function createNotification(title, Id, userId){
 return dispatch => {
 	fetch("http://localhost:3000/notifications",{
 		method: 'POST',
@@ -132,26 +132,34 @@ return dispatch => {
 	     },
 	     body: JSON.stringify({
 	     	content: title,
-	     	convo_id: Id
+	     	convo_id: Id,
+	     	user_id: userId
 	     })
 	})
 	.then(res=>res.json())
+	// .then(data => {
+		
+	// 	let user = data.find(user => user.id === userId)
+	// 	let newNotes = user.notifications.map(notification => {
+	//     if (notification.id === data.id){
+	//         return data
+	//       } else {
+	//         return notification
+	//       }
+	//     })
+	//     user.notifications = newNotes
+	//     dispatch({type: "RESET_USER", payload: {user: {...user}}})
+
+	// })
   }
 }
 
 export function handleNewNotifications(user, data){
   return dispatch => {
-  	if (data.id === user.id){
-  	let newNotes = user.notifications.map(notification => {
-      if (notification.id === data.id){
-        return data
-      } else {
-        return notification
-      }
-    })
-    user.notifications = newNotes
+  	
+    user.notifications = [...user.notifications, data]
     dispatch({type: "RESET_USER", payload: {user: {...user}}})
-  	}
+  	
   }
 }
 

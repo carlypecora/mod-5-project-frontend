@@ -20,7 +20,7 @@ return !props.token ?
 
 const mapThroughNotifications = (props) => {
 	if (props.currentUser.notifications.length > 0){
-		return props.currentUser.notifications.map(note => { 
+		return props.currentUser.notifications.reverse().map(note => { 
 			return <Notification key={Math.random()} note={note} />
 		})
 	} else {

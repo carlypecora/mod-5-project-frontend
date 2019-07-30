@@ -52,6 +52,7 @@ body{
 .nav-bar {
   background: #e6f3f7;
   height: 3em;
+  z-index: 999;
   border-bottom: 0.1px solid #d5e6ea;
 
 }
@@ -157,6 +158,7 @@ svg:hover {
   position: fixed;
   bottom: 0px;
   width: 60%;
+  overflow: hidden;
 }
 
 .message{

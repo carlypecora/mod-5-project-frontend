@@ -8,6 +8,7 @@ class NotificationsContainer extends React.Component {
 
 	state = {
 		open: false,
+		sender_id: false
 	}
 
 	
@@ -20,7 +21,10 @@ class NotificationsContainer extends React.Component {
 	}
 
 	unreads = () => {
-		let unreads = this.props.currentUser.notifications.filter(note => !note.read)
+		let unreads = this.props.currentUser.notifications.filter(note => {
+		
+			return !note.read && note.user_id !== this.props.currentUser.id
+		})
 		if (unreads.length > 0) {
 			return true
 		} else {
@@ -33,11 +37,20 @@ class NotificationsContainer extends React.Component {
 			<Fragment>
 			<ActionCableConsumer
 		          channel={{ channel: 'NotificationsChannel' }}
-		          onReceived={(data) => this.props.handleNewNotifications(this.props.currentUser, data)}
+		          onReceived={(data) => {
+		          	console.log(data)
+		          	if(data.sender_id === this.props.currentUser.id){
+		          		this.setState({sender_id: true})
+		          	} else {
+		          		this.setState({sender_id: false})
+		          	}
+		          	this.props.handleNewNotifications(this.props.currentUser, data.notification)
+		          	}
+		          }
 		        />
 
 				<div style={{display:'inline'}}onClick={()=>this.setState({open: !this.state.open})}>
-				 {this.unreads() ? <BellIcon width='20' active={true} animate={true} /> : <BellIcon width='20'/> }
+				 {this.unreads() && !this.state.sender_id ? <BellIcon color='navy' width='20' active={true} animate={true} /> : <BellIcon color='navy' width='20'/> }
 				</div>
 			</Fragment>
 		)
