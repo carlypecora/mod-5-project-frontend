@@ -97,6 +97,7 @@ svg:hover {
   left: 20%;
   margin-right: 20%;
   width: 60%;
+  overflow: scroll;
   top: 40px;
   bottom: 0;
 }
@@ -188,5 +189,13 @@ svg:hover {
   padding: 1%;
   border: 0.5px solid #e5eae8;
   border-radius: 5%;
+}
+
+.single-notification {
+  border-bottom:  0.5px solid gray;
+}
+
+.all-notifications {
+  overflow: scroll;
 }
 

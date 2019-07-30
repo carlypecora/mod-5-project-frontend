@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions/logout.js'
-import Notifications from './Notifications'
+import NotificationsContainer from '../containers/NotificationsContainer'
 import { Link } from 'react-router-dom'
 
 
@@ -48,7 +48,7 @@ const renderNavItems = (props) => {
 				null
 			}
 				<div style={{flexDirection: 'row', marginTop: 5, display: 'inline', float: 'right'}}>
-					<div style={{color: '#0986a5', display: 'inline', textAlign: 'right', fontSize: 20, marginRight: 10}}><Notifications /></div>
+					<div style={{color: '#0986a5', display: 'inline', textAlign: 'right', fontSize: 20, marginRight: 10}}><NotificationsContainer /></div>
 					<Link onClick={() => handleLogout(props)} to='/login' style={{display: 'inline', marginRight: 10}}>Logout</Link>
 				</div>
 			</div>
@@ -59,5 +59,6 @@ const renderNavItems = (props) => {
 function mapStateToProps(state){
 	return({...state.auth, ...state.selected.currentConversation})
 }
+//unreads={props.unreads} resetUnreads={resetUnreads} 
 
 export default connect(mapStateToProps, actions)(NavBar)

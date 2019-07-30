@@ -2,12 +2,12 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import Notification from '../components/Notification'
 import * as actions from '../actions/selectedConversation'
 import { connect } from 'react-redux'
 
 
 const ProfileContainer = (props) => {
-
 return !props.token ?
 	 null
 	:
@@ -18,9 +18,23 @@ return !props.token ?
   )
 }
 
+const mapThroughNotifications = (props) => {
+	if (props.currentUser.notifications.length > 0){
+		return props.currentUser.notifications.map(note => { 
+			return <Notification key={Math.random()} note={note} />
+		})
+	} else {
+		return <div>No notifications at this time.</div>
+	}
+}
+
 const renderItems = (props) => {
 	if (!!props.notifications) {
-		return <div> notifications </div>
+		return (
+			<div className="all-notifications">
+				{mapThroughNotifications(props)}
+			</div>
+			)
 	} else {
 		return (
 		<div>

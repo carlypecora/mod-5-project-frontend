@@ -25,3 +25,17 @@ export function resetUserForDms(user, convo){
     dispatch({type: "RESET_USER", payload: {user: {...user}}})
   }
 }
+
+export function resetUserForNotifications(user, note){
+  return dispatch => {
+    let newNotes = user.notifications.map(notification => {
+      if (notification.id === note.id){
+        return note
+      } else {
+        return notification
+      }
+    })
+    user.notifications = newNotes
+    dispatch({type: "RESET_USER", payload: {user: {...user}}})
+  }
+}
