@@ -24,6 +24,7 @@ class Notification extends React.Component {
 		}
 
 	render() {
+		console.log(this.props)
 		return (
 			<div>
 				<div className="single-notification">
