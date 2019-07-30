@@ -42,6 +42,7 @@ class CurrentConversation extends React.Component {
 		 .then(data => this.setState({
 		 	message: ''
 		 }))
+		 .then(data => this.props.createNotification(this.props.currentConversation.title, this.props.currentConversation.id))
 		 .catch(error => console.error(error))
   	}
 

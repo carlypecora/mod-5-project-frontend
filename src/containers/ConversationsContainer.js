@@ -94,7 +94,7 @@ render(){
 		          channel={{ channel: 'ConversationsChannel' }}
 		          onReceived={this.props.handleReceivedConversation}
 		        /><ActionCableConsumer
-		          channel={{ channel: 'MessagessChannel' }}
+		          channel={{ channel: 'MessagesChannel' }}
 		          onReceived={(mess) => this.handleMessage(mess)}
 		        />
 		        

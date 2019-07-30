@@ -86,6 +86,7 @@ svg:hover {
   bottom: 0;
   top: 3em;
   border-left: 0.5px solid gray;
+  overflow: scroll;
 }
 
 #second-main-content {
@@ -193,9 +194,5 @@ svg:hover {
 
 .single-notification {
   border-bottom:  0.5px solid gray;
-}
-
-.all-notifications {
-  overflow: scroll;
 }
 
