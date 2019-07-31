@@ -26,8 +26,8 @@ const renderNavItems = (props) => {
 	if (!props.token) {
 		return(
 			<div>
-		    	<Link to='/login' className="single-nav-link">Login</Link>
-		    	<Link to='/signup' className="single-nav-link">Signup</Link>
+		    	<Link to='/login' className="single-nav-link">LOGIN</Link>
+		    	<Link to='/signup' className="single-nav-link">SIGNUP</Link>
     		</div>
 		)
 	} else {
@@ -47,9 +47,9 @@ const renderNavItems = (props) => {
 				:
 				null
 			}
-				<div style={{flexDirection: 'row', marginTop: 5, display: 'inline', float: 'right'}}>
+				<div className="div-logout" style={{flexDirection: 'row', marginTop: 5, display: 'inline', float: 'right'}}>
 					<div style={{color: '#0986a5', display: 'inline', textAlign: 'right', fontSize: 20, marginRight: 10}}><NotificationsContainer /></div>
-					<Link onClick={() => handleLogout(props)} to='/login' style={{display: 'inline', marginRight: 10}}>Logout</Link>
+					<Link onClick={() => handleLogout(props)} to='/login' style={{display: 'inline', marginRight: 30}} className="innerdiv-logout">LOGOUT</Link>
 				</div>
 			</div>
 			)

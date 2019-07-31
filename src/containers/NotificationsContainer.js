@@ -50,7 +50,7 @@ class NotificationsContainer extends React.Component {
 		        />
 
 				<div style={{display:'inline'}}onClick={()=>this.setState({open: !this.state.open})}>
-				 {this.unreads() && !this.state.sender_id ? <BellIcon color='navy' width='20' active={true} animate={true} /> : <BellIcon color='navy' width='20'/> }
+				 {this.unreads() && !this.state.sender_id ? <div className="bell"><BellIcon color='grey' width='20' active={true} animate={true} /></div> : <div className="bell"><BellIcon color='grey' width='20'/></div> }
 				</div>
 			</Fragment>
 		)

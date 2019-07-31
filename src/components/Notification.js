@@ -28,7 +28,7 @@ class Notification extends React.Component {
 			<div>
 				<div className="single-notification">
 					<div> 
-						{!this.props.note.read && this.props.note.user_id !== this.props.currentUser.id?
+						{!this.props.note.read ?
 							<div  style={{background: 'lightgrey', fontWeight: 'bold', color: 'navy'}}>
 								<h6>{this.props.note.content}</h6>
 								<div>{this.props.note.created_at.slice(0, 10)}</div>
