@@ -43,13 +43,15 @@ const renderItems = (props) => {
 			)
 	} else {
 		return (
-		<div>
-		{props.selectedUser.id !== props.currentUser.id ? <h5 style={{float: 'right', marginRight: 5, display: 'inline-block', cursor: 'pointer'}} onClick={() => handleClick(props.currentUser, props.resetSelectedUser)}>x</h5> : null}
-	      <div id="profile-card">
+		<div classname="outer-profile-card" style={{marginTop: 20}}>
+	      <div>
+		  	{props.selectedUser.id !== props.currentUser.id ? <h5 style={{cursor: 'pointer', textAlign: 'left', marginLeft: 5}} onClick={() => handleClick(props.currentUser, props.resetSelectedUser)}>x</h5> : <h5>&nbsp; </h5>}
+
 	      <Card
 		    style={{ width: 256, border: 'none' }}
 		    cover={<img alt="" src={props.selectedUser.photo_url} />}
 		  >
+
 		    <Meta title={fullName(props)} description={props.selectedUser.email} />
 		    <br />
 		    <Meta description={props.selectedUser.bio} />
@@ -69,17 +71,5 @@ const handleClick = (currentUser, reducer) => {
 function mapStateToProps(state){
 	return ({...state.auth, ...state.selected})
 }
-
-// <Card style={{ width: '18rem' }}>
-// 			  <Card.Img variant="top" src={props.selectedUser.photo_url} />
-// 			  <Card.Body>
-// 			    <Card.Title>{props.selectedUser.first_name} {props.selectedUser.last_name}</Card.Title>
-// 			  </Card.Body>
-// 			  <ListGroup className="list-group-flush">
-// 			    <ListGroupItem>Email: {props.selectedUser.email}</ListGroupItem>
-// 			    <ListGroupItem>Bio: {props.selectedUser.bio}</ListGroupItem>
-// 			  </ListGroup>
-// 			</Card>
-
 
 export default connect(mapStateToProps, actions)(ProfileContainer)

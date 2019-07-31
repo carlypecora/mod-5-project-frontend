@@ -128,8 +128,36 @@ function mapStateToProps(state){
 
 class Sider extends React.Component {
   handleClick = e => {
-    console.log('click ', e);
-  };
+    console.log('click ', e)
+  }
+
+  mapThroughConversations = () => {
+	if (!!this.props.currentUser.conversations){
+		let removeDms = this.props.currentUser.conversations.filter(convo => !convo.dm)
+		return removeDms.map(conversation => {
+			return <Menu.Item key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)}>{conversation.title}</Link></Menu.Item>
+			})
+		} else {
+			return null
+		}
+	}
+
+	mapThroughAllConversations = () => {
+
+			let userConvoIds = this.props.currentUser.conversations.map(convo => convo.id)
+			let removeDms = this.props.conversations.filter(convo => !convo.dm)
+			let diff = removeDms.filter(x => !userConvoIds.includes(x.id))
+			return diff.map(conversation => {
+				return <Menu.Item key={conversation.id}><Link to={`/conversations/${conversation.id}`} onClick={() => this.props.selectedConversation(conversation.id)}>{conversation.title}</Link></Menu.Item>
+			})
+		}
+
+	mapThroughDms = () => {
+
+		let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm)
+			return dms.map(dm => <Menu.Item key={dm.id}><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)}>{dm.title}</Link></Menu.Item>)
+		}
+
 
   render() {
     return (
@@ -140,51 +168,65 @@ class Sider extends React.Component {
       <Menu
         onClick={this.handleClick}
         style={{ width: 256 }}
-        defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode="inline"
       >
+      <ActionCableConsumer
+	      channel={{ channel: 'ConversationsChannel' }}
+	      onReceived={this.props.handleReceivedConversation}
+	    /><ActionCableConsumer
+	      channel={{ channel: 'MessagesChannel' }}
+	      onReceived={(mess) => this.handleMessage(mess)}
+	    />
+	    <Menu.Item>
+	        <Link 
+		        to="/conversations/new" 
+		        className="icon" 
+		        onClick={() => this.props.deselectConversation()}>
+	        	<IoIosAddCircleOutline /> Create Channel
+	        </Link>
+        </Menu.Item>
         <SubMenu
           key="sub1"
           title={
             <span>
-              <Icon type="mail" />
-              <span>Navigation One</span>
+              <Icon type="message" />
+              <span>My Channels:</span>
             </span>
           }
         >
           <Menu.ItemGroup key="g1" title="">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
+            {this.mapThroughConversations()}
           </Menu.ItemGroup>
         </SubMenu>
         <SubMenu
           key="sub2"
           title={
             <span>
-              <Icon type="appstore" />
-              <span>Navigation Two</span>
+              <Icon type="message" />
+              <span>Join Channels:</span>
             </span>
           }
         >
-          <Menu.Item key="5">Option 5</Menu.Item>
-          <Menu.Item key="6">Option 6</Menu.Item>
+          {this.mapThroughAllConversations()}
         </SubMenu>
+        <Menu.Item>
+	        <Link to="/dm/new" 
+	        	onClick={() => this.props.deselectConversation()} 
+	        	className="icon" >
+	        	<IoIosAddCircleOutline /> New Direct Message
+	        </Link>
+        </Menu.Item>
         <SubMenu
           key="sub4"
           title={
             <span>
-              <Icon type="setting" />
-              <span>Navigation Three</span>
+              <Icon type="message" />
+              <span>Direct Messages:</span>
             </span>
           }
         >
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
+          {this.mapThroughDms()}
         </SubMenu>
       </Menu>
   	  }
