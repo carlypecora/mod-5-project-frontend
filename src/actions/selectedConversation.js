@@ -8,7 +8,6 @@ export function selectedConversation(convoId) {
 }
 
 export function resetCurrentConversation(conversation, message){
-	console.log(message)
 	return dispatch => {
 		conversation.messages = [...conversation.messages, message]
 		dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: conversation}})
@@ -110,3 +109,59 @@ export function createDm(dmUsers, currentUser, props){
 		})
 	}
 }
+
+export function viewNotifications(){
+	return dispatch => {
+		dispatch({type: "VIEW_NOTIFICATIONS", payload: {notifications: true}})
+	}
+}
+
+export function hideNotifications(){
+	return dispatch => {
+		dispatch({type: "VIEW_NOTIFICATIONS", payload: {notifications: null}})
+	}
+}
+
+export function createNotification(title, Id, userId){
+return dispatch => {
+	fetch("http://localhost:3000/notifications",{
+		method: 'POST',
+	      headers: {
+	        'Content-Type': 'application/json',
+	        Accept: 'application/json'
+	     },
+	     body: JSON.stringify({
+	     	content: title,
+	     	convo_id: Id,
+	     	user_id: userId
+	     })
+	})
+	.then(res=>res.json())
+	// .then(data => {
+		
+	// 	let user = data.find(user => user.id === userId)
+	// 	let newNotes = user.notifications.map(notification => {
+	//     if (notification.id === data.id){
+	//         return data
+	//       } else {
+	//         return notification
+	//       }
+	//     })
+	//     user.notifications = newNotes
+	//     dispatch({type: "RESET_USER", payload: {user: {...user}}})
+
+	// })
+  }
+}
+
+export function handleNewNotifications(user, data){
+  return dispatch => {
+  	
+    user.notifications = [...user.notifications, data]
+    dispatch({type: "RESET_USER", payload: {user: {...user}}})
+  	
+  }
+}
+
+
+

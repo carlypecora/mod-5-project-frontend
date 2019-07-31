@@ -11,9 +11,11 @@ import { Route, Switch } from 'react-router-dom'
 
 
 
+
 class MainContainer extends React.Component {
+
+
 	render(){
-  // const token = localStorage.getItem("token")
   return (
     <div className="center-div">
     	<NavBar />
@@ -37,5 +39,6 @@ class MainContainer extends React.Component {
   	)
 	}
 }
+
 
 export default MainContainer

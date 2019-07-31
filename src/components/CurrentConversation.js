@@ -42,6 +42,7 @@ class CurrentConversation extends React.Component {
 		 .then(data => this.setState({
 		 	message: ''
 		 }))
+		 .then(data => this.props.createNotification(this.props.currentConversation.title, this.props.currentConversation.id, this.props.currentUser.id))
 		 .catch(error => console.error(error))
   	}
 
@@ -106,7 +107,9 @@ class CurrentConversation extends React.Component {
 	render(){
 		return(
 			<div>
-				{this.renderEntireConversation()}
+				<div id="conversations-container">
+					{this.renderEntireConversation()}
+				</div>
 			</div>
 		)
 	}

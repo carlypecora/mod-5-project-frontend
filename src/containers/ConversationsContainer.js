@@ -9,15 +9,9 @@ class ConversationsContainer extends React.Component {
 
 	state = {
 
-		viewAllConvos: false,
+		viewAllConvos: false
 		
 	}
-
-// checkForUnreadMsg = (conversation) => {
-// 		let con = this.props.conversations.find(convo => convo.id === conversation.id)
-// 		let unreadMsgs = con.messages.filter(msg => !msg.read)
-// 		return unreadMsgs.length > 0 ? true : false
-// }
 
 mapThroughAllConversations = () => {
 
@@ -100,7 +94,7 @@ render(){
 		          channel={{ channel: 'ConversationsChannel' }}
 		          onReceived={this.props.handleReceivedConversation}
 		        /><ActionCableConsumer
-		          channel={{ channel: 'MessagessChannel' }}
+		          channel={{ channel: 'MessagesChannel' }}
 		          onReceived={(mess) => this.handleMessage(mess)}
 		        />
 		        
