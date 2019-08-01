@@ -84,6 +84,7 @@ body{
   position: absolute;
   margin-top: 3.35em;
   height: 100%;
+  overflow: scroll;
 }
 
 .left-sidebar {
