@@ -8,69 +8,11 @@ const { SubMenu } = Menu;
 
 
 
-const NavBar = (props) => {
-	return (
-	<div className="nav-bar">
-		<div className="nav-links">
-    		{renderNavItems(props)}
-    	</div>
-    </div> 
-   )
-}
 
 const handleLogout = (props) => {
 	localStorage.removeItem("token")
 	props.logout()
 }
-
-const renderNavItems = (props) => {
-	// let token = localStorage.getItem("token")
-	if (!props.token) {
-		return(
-			<div>
-		    	<Link to='/login' className="single-nav-link">LOGIN</Link>
-		    	<Link to='/signup' className="single-nav-link">SIGNUP</Link>
-    		</div>
-		)
-	} else {
-		return (
-			<div style={{flexDirection: 'row'}}>
-		 	{props.title && window.location.pathname.includes("/conversations") && !props.dm ? 
-				<div className="nav-channel">
-					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Channel Name:</h6>&nbsp;&nbsp;&nbsp;
-					<div style={{display: 'inline'}}>{props.title}</div>&nbsp;&nbsp;&nbsp;
-					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Purpose:</h6>&nbsp;&nbsp;&nbsp;
-					<div style={{display: 'inline'}}>{props.purpose}</div>&nbsp;&nbsp;&nbsp;
-					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Made By:</h6>&nbsp;&nbsp;&nbsp;
-					<div style={{display: 'inline'}}>{props.creator}</div>&nbsp;&nbsp;&nbsp;
-					<h6 style={{display: 'inline', fontWeight: 'bold'}}>Created On:</h6>&nbsp;&nbsp;&nbsp;
-					<div style={{display: 'inline'}}>{props.created_at.slice(0, 10)}</div>&nbsp;&nbsp;&nbsp;
-				</div>
-				:
-				<div>
-				{ props.dm ?
-					<div className="nav-channel">
-						<h6 style={{display: 'inline', fontWeight: 'bold'}}>Direct Message:</h6>&nbsp;&nbsp;&nbsp;
-						<div style={{display: 'inline'}}>{props.title}</div>&nbsp;&nbsp;&nbsp;
-					</div>
-					:
-					null
-
-				}
-				</div>
-			}
-				<div className="div-logout" style={{flexDirection: 'row', marginTop: 5, display: 'inline', float: 'right'}}>
-					<div style={{color: '#0986a5', display: 'inline', textAlign: 'right', fontSize: 20, marginRight: 10}}><NotificationsContainer /></div>
-					<Link onClick={() => handleLogout(props)} to='/login' style={{display: 'inline', marginRight: 30}} className="innerdiv-logout">LOGOUT</Link>
-				</div>
-			</div>
-			)
-	}
-}
-
-
-//unreads={props.unreads} resetUnreads={resetUnreads} 
-
 
 
 class NewNav extends React.Component {

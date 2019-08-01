@@ -8,7 +8,7 @@ class NotificationsContainer extends React.Component {
 
 	state = {
 		open: false,
-		sender_id: false
+		sender_id: false,
 	}
 
 	
@@ -25,18 +25,19 @@ class NotificationsContainer extends React.Component {
 		if (this.props.currentUser.notifications){
 		unreads = this.props.currentUser.notifications.filter(note => {
 		
-			return !note.read && note.user_id !== this.props.currentUser.id
+			return !note.read
 			})
 		if (unreads.length > 0) {
 			return true
 		} else {
 			return false
 		}
-	}
+	  }
 	}
 
 	render(){
 		
+		console.log(this.unreads())
 		return(
 			<Fragment>
 			<ActionCableConsumer

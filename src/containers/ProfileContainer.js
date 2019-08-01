@@ -35,8 +35,6 @@ const fullName = (props) => {
 }
 
 const renderItems = (props) => {
-	
-		console.log("props", props)
 	if (!!props.notifications){
 		return (
 			<div className="all-notifications">
@@ -45,7 +43,7 @@ const renderItems = (props) => {
 			)
 	} else {
 		return (
-		<div classname="outer-profile-card" style={{marginTop: 20}}>
+		<div className="outer-profile-card" style={{marginTop: 20}}>
 	      <div>
 		  	{props.selectedUser.id !== props.currentUser.id ? <h5 style={{cursor: 'pointer', textAlign: 'left', marginLeft: 5}} onClick={() => handleClick(props.currentUser, props.resetSelectedUser)}>x</h5> : <h5>&nbsp; </h5>}
 
