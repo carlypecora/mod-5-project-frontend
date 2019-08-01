@@ -88,7 +88,6 @@ export function createDm(dmUsers, currentUser, props){
 	let ids = dmUsers.map(user => user.id)
 	let allIds = [...ids, currentUser.id]
 	let names = dmUsers.map(user => user.first_name).join(", ")
-	console.log(names)
 	fetch("http://localhost:3000/create_dm", {
 		  method: 'POST',
 	      headers: {

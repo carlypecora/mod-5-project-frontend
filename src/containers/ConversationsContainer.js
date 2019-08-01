@@ -155,7 +155,6 @@ class Sider extends React.Component {
 	mapThroughDms = () => {
 
 		let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm )
-		console.log(dms)
 			return dms.map(dm => <Menu.Item key={dm.id}><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)}>{dm.title}</Link></Menu.Item>)
 		}
 
