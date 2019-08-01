@@ -64,6 +64,7 @@ body{
 
 .note {
   background-color: rgb(230, 247, 255);
+  border-bottom: 0.1px solid #d5e6ea;
 }
 
 .ant-menu-horizontal {

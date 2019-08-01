@@ -19,7 +19,7 @@ export function login(userData, props) {
         alert(data.errors);
       } else {
         localStorage.setItem("token", data.token);
-        props.history.push('/home')
+        props.history.push('/conversations/1')
         dispatch({type: "LOG_IN", payload: {user: data.user, jwt: data.token}})
       }
     })
@@ -49,7 +49,7 @@ export function signup(userData, props, password){
         alert(data.errors);
       } else {
         localStorage.setItem("token", data.token);
-        props.history.push('/home')
+        props.history.push('/conversations/1')
         dispatch({type: "LOG_IN", payload: {user: data.user, jwt: data.token}})
       }
     })
