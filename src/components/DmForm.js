@@ -67,7 +67,7 @@ class DmForm extends React.Component {
 	renderAllUsers = (users) => {
 		let xusers = users.filter(user => user.id !== this.props.currentUser.id)
 		let yusers = this.filterUsers(xusers)
-		return yusers.map(user => <h5 onClick={this.chooseUserDm} className="dm-user" key={user.id}>{user.first_name} {user.last_name}</h5>)
+		return yusers.map(user => <div style={{fontSize: 15}} onClick={this.chooseUserDm} className="dm-user" key={user.id}>{user.first_name} {user.last_name}</div>)
 	}
 
 	componentDidMount(){
@@ -93,7 +93,7 @@ class DmForm extends React.Component {
 render(){
 	return (
 		<Form id="convo-form" style={{marginTop: 40}}>
-		  <h2>Who would you like to Message?</h2>
+		  <h3>WHO WOULD YOU LIKE TO MESSAGE?</h3>
 		  <h4>3 people max</h4>
 		  <Form.Group controlId="formGridAEmail">
 		    <Form.Label>Enter Name</Form.Label>

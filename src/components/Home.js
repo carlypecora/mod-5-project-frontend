@@ -6,9 +6,9 @@ class Home extends React.Component {
 	renderItems = () => {
 		let token = localStorage.getItem("token")
 		return token ?
-		 <h2 style={{marginTop: 40}}>Hello, {this.props.first_name}! </h2> 
+		 <p style={{marginTop: 40, fontSize: '3em'}}>Hello, {this.props.first_name}! </p> 
 		 : 
-		 <h3 className="home-login-error">Please Login To View</h3>
+		 <p style={{fontSize: '3em'}}className="home-login-error">Please Login To View</p>
 	}
 
 	render(){

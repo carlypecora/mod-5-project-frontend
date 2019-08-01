@@ -27,7 +27,6 @@ export function login(userData, props) {
 }
 
 export function signup(userData, props, password){
-  console.log("hit this signup!")
   return dispatch => {
     fetch('http://localhost:3000/users', {
         method: 'POST',
@@ -49,7 +48,6 @@ export function signup(userData, props, password){
       if (data.errors) {
         alert(data.errors);
       } else {
-        console.log(data)
         localStorage.setItem("token", data.token);
         props.history.push('/home')
         dispatch({type: "LOG_IN", payload: {user: data.user, jwt: data.token}})
