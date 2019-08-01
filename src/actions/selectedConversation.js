@@ -96,7 +96,7 @@ export function createDm(dmUsers, currentUser, props){
 	        Accept: 'application/json'
 	      },
 	      body: JSON.stringify({
-	      		title: `dm with ${names}, ${currentUser.first_name}`,
+	      		title: `${names}, ${currentUser.first_name}`,
 	      		dm: true,
 	      		user_ids: allIds
 	      	})
@@ -133,7 +133,8 @@ return dispatch => {
 	     body: JSON.stringify({
 	     	content: title,
 	     	convo_id: Id,
-	     	user_id: userId
+	     	user_id: userId,
+	     	timing: new Date().toLocaleTimeString()
 	     })
 	})
 	.then(res=>res.json())
@@ -155,6 +156,7 @@ return dispatch => {
 }
 
 export function handleNewNotifications(user, data){
+	console.log('do i happen twice?')
   return dispatch => {
   	
     user.notifications = [...user.notifications, data]

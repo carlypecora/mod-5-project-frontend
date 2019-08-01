@@ -178,14 +178,6 @@ class Sider extends React.Component {
 	      channel={{ channel: 'MessagesChannel' }}
 	      onReceived={(mess) => this.handleMessage(mess)}
 	    />
-	    <Menu.Item>
-	        <Link 
-		        to="/conversations/new" 
-		        className="icon" 
-		        onClick={() => this.props.deselectConversation()}>
-	        	<IoIosAddCircleOutline /> Create Channel
-	        </Link>
-        </Menu.Item>
         <SubMenu
           key="sub1"
           title={
@@ -195,9 +187,16 @@ class Sider extends React.Component {
             </span>
           }
         >
-          <Menu.ItemGroup key="g1" title="">
+          <Menu.Item>
+	        <Link 
+		        to="/conversations/new" 
+		        className="icon" 
+		        onClick={() => this.props.deselectConversation()}>
+	        	<IoIosAddCircleOutline /> Create Channel
+	        </Link>
+          </Menu.Item>
+  
             {this.mapThroughConversations()}
-          </Menu.ItemGroup>
         </SubMenu>
         <SubMenu
           key="sub2"
@@ -210,13 +209,6 @@ class Sider extends React.Component {
         >
           {this.mapThroughAllConversations()}
         </SubMenu>
-        <Menu.Item>
-	        <Link to="/dm/new" 
-	        	onClick={() => this.props.deselectConversation()} 
-	        	className="icon" >
-	        	<IoIosAddCircleOutline /> New Direct Message
-	        </Link>
-        </Menu.Item>
         <SubMenu
           key="sub4"
           title={
@@ -226,6 +218,13 @@ class Sider extends React.Component {
             </span>
           }
         >
+        <Menu.Item>
+	        <Link to="/dm/new" 
+	        	onClick={() => this.props.deselectConversation()} 
+	        	className="icon" >
+	        	<IoIosAddCircleOutline /> New Direct Message
+	        </Link>
+        </Menu.Item>
           {this.mapThroughDms()}
         </SubMenu>
       </Menu>

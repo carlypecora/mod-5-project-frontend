@@ -34,7 +34,7 @@ class ConversationForm extends React.Component {
 	render(){
 		return (
 			<Form id="convo-form" style={{marginTop: 40}} onChange={this.handleChange} onSubmit={this.handleSubmit}>
-				<h1>Create a New Channel</h1>
+				<h3>CREATE A NEW CHANNEL</h3>
 
 				  <Form.Group controlId="formGridAEmail">
 				    <Form.Label>Channel Title</Form.Label>

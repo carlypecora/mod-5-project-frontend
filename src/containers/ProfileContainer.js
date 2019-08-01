@@ -22,7 +22,7 @@ return !props.token ?
 
 const mapThroughNotifications = (props) => {
 	if (props.currentUser.notifications.length > 0){
-		return props.currentUser.notifications.reverse().map(note => { 
+		return props.currentUser.notifications.map(note => { 
 			return <Notification key={Math.random()} note={note} />
 		})
 	} else {
@@ -35,10 +35,12 @@ const fullName = (props) => {
 }
 
 const renderItems = (props) => {
-	if (!!props.notifications) {
+	
+		console.log("props", props)
+	if (!!props.notifications){
 		return (
 			<div className="all-notifications">
-				{mapThroughNotifications(props)}
+				{props.currentUser.notifications.length > 0 ? mapThroughNotifications(props).reverse() : <div>No notifications at this time</div>}
 			</div>
 			)
 	} else {
