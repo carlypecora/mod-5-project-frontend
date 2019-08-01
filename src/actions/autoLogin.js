@@ -21,8 +21,12 @@ export function autoLogin(token) {
 
 export function resetUserForDms(user, convo){
   return dispatch =>{
-    user.conversations = [...user.conversations, convo]
-    dispatch({type: "RESET_USER", payload: {user: {...user}}})
+    console.log(convo)
+    let user_ids = convo.users.map(user => user.id)
+    if (user_ids.includes(user.id)){
+      user.conversations = [...user.conversations, convo]
+      dispatch({type: "RESET_USER", payload: {user: {...user}}})
+    }
   }
 }
 

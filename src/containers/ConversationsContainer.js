@@ -154,7 +154,8 @@ class Sider extends React.Component {
 
 	mapThroughDms = () => {
 
-		let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm)
+		let dms = this.props.currentUser.conversations.filter(convo => !!convo.dm )
+		console.log(dms)
 			return dms.map(dm => <Menu.Item key={dm.id}><Link to={`/conversations/${dm.id}`} onClick={() => this.props.selectedConversation(dm.id)}>{dm.title}</Link></Menu.Item>)
 		}
 
@@ -174,7 +175,7 @@ class Sider extends React.Component {
       >
       <ActionCableConsumer
 	      channel={{ channel: 'ConversationsChannel' }}
-	      onReceived={this.props.handleReceivedConversation}
+	      onReceived={response => this.props.handleReceivedConversation(response)}
 	    /><ActionCableConsumer
 	      channel={{ channel: 'MessagesChannel' }}
 	      onReceived={(mess) => this.handleMessage(mess)}

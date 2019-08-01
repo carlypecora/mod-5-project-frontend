@@ -36,8 +36,6 @@ class NotificationsContainer extends React.Component {
 	}
 
 	render(){
-		
-		console.log(this.unreads())
 		return(
 			<Fragment>
 			<ActionCableConsumer
