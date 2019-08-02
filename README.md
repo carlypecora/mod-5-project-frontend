@@ -1,7 +1,8 @@
 Slackers (Frontend)
 
 A workspace chat app mimicking the functionality of slack.
-Real time chat ability through Action Cable.
+Real time chat and notification ability through Action Cable.
+
 
 React, Redux, Action Cable, Cloudinary API, Bootstrap (CSS), Antd (CSS)
 
