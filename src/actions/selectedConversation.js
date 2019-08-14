@@ -22,6 +22,11 @@ export function deselectConversation(){
 
 export function createConversation(userData, props, userName, user){
 	return dispatch => {
+		console.log("userData", userData)
+		console.log("props", props)
+		console.log("props", props)
+		console.log("userName", userName)
+		console.log("user", user)
 		fetch("http://localhost:3000/conversations", {
 	      method: 'POST',
 	      headers: {
@@ -31,15 +36,15 @@ export function createConversation(userData, props, userName, user){
 	      body: JSON.stringify({
 	          title: userData.title,
 	          purpose: userData.purpose,
-	          creator: userName
+	          creator: userName,
+	          user_id: props.currentUser.id
 	    })
 	  })
 		.then(res => res.json())
 		.then(data => {
 			user.conversations = [...user.conversations, data]
-			props.history.push(`/conversations/${data.id}`)
 			dispatch({type: "RESET_USER", payload: {user: {...user}}})
-			
+			props.history.push(`/conversations/${data.id}`)
 		})
 	}
 }
@@ -88,6 +93,7 @@ export function createDm(dmUsers, currentUser, props){
 	let ids = dmUsers.map(user => user.id)
 	let allIds = [...ids, currentUser.id]
 	let names = dmUsers.map(user => user.first_name).join(", ")
+
 	fetch("http://localhost:3000/create_dm", {
 		  method: 'POST',
 	      headers: {

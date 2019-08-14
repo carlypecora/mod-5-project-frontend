@@ -105,16 +105,22 @@ class Signup extends React.Component {
 				    <Form.Control name="password_confirmation" type="password" placeholder="Confirm Password" onChange={this.handlePasswordChange}/>
 				  </Form.Group>
 
+
+				  <Form.Group>
+				  		<div className="upload-file">
+				      		Upload Profile Picture: &ensp; <input className="upload-file-button" type="file" name="file" placeholder="Upload Image" onChange={this.handlePhotoChange} />
+				      	</div>
+				    </Form.Group>
+
+				    <br />  
+				    <br />  
+				    <br />  
+
 				  <Form.Group controlId="exampleForm.ControlTextarea1">
 				    <Form.Label>Bio</Form.Label>
 				    <Form.Control name="bio" as="textarea" rows="3" onChange={this.handleChange}/>
 				  </Form.Group>
 
-				  	<div className="foo">
-				  		<div className="upload-file">
-				      		Upload Profile Picture: &ensp; <input className="upload-file-button" type="file" name="file" placeholder="Upload Image" onChange={this.handlePhotoChange} />
-				      	</div>
-				    </div>
 
 				    <br />
 				    <br />

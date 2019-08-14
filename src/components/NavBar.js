@@ -93,6 +93,7 @@ class NewNav extends React.Component {
   render() {
     return (
     	<div>
+          <Link to="/home" style={{float: 'left', marginLeft: 7, marginTop: 7}}><h4>SLACKERS</h4></Link>
       		{this.renderItems()}
       	</div>
     )

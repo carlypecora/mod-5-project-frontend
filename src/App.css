@@ -195,9 +195,9 @@ svg:hover {
 }
 
 .upload-file {
-  display: inline;
   position: absolute;
   text-align: left;
+  margin-right: 30%;
 }
 
 .upload-file-button {
