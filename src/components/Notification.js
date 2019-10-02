@@ -6,7 +6,7 @@ class Notification extends React.Component {
 
 		componentWillUnmount(){
 			if(!this.props.note.read){
-			fetch(`http://localhost:3000/notifications/${this.props.note.id}`, {
+			fetch(`https://stark-fortress-17717.herokuapp.com/notifications/${this.props.note.id}`, {
 				method: 'PATCH',
 				headers: {
 			        'Content-Type': 'application/json',

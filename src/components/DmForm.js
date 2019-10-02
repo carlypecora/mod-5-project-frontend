@@ -71,7 +71,7 @@ class DmForm extends React.Component {
 	}
 
 	componentDidMount(){
-		fetch("http://localhost:3000/users")
+		fetch("https://stark-fortress-17717.herokuapp.com/users")
 		.then(res => res.json())
 		.then(data => {
 			this.setState({

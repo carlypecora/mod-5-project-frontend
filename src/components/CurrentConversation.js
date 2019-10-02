@@ -26,7 +26,7 @@ class CurrentConversation extends React.Component {
 
  	handleSubmit = (e) => {
 	    e.preventDefault()
-		fetch('http://localhost:3000/messages', {
+		fetch('https://stark-fortress-17717.herokuapp.com/messages', {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',

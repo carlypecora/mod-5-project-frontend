@@ -1,6 +1,6 @@
 export function login(userData, props) {
     return dispatch => {
-    fetch('http://localhost:3000/login', {
+    fetch('https://stark-fortress-17717.herokuapp.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export function login(userData, props) {
 
 export function signup(userData, props, password){
   return dispatch => {
-    fetch('http://localhost:3000/users', {
+    fetch('https://stark-fortress-17717.herokuapp.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

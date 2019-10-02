@@ -1,7 +1,7 @@
 export function autoLogin(token) {
     
     return dispatch => {
-    fetch("http://localhost:3000/auto_login", {
+    fetch("https://stark-fortress-17717.herokuapp.com/auto_login", {
         headers: {
           "Authorization": token
         }

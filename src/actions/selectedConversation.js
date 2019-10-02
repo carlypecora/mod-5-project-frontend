@@ -1,6 +1,6 @@
 export function selectedConversation(convoId) {	
 	return dispatch => {
-		fetch(`http://localhost:3000/conversations/${convoId}`)
+		fetch(`https://stark-fortress-17717.herokuapp.com/conversations/${convoId}`)
 		.then(res => res.json())
 		.then(data => dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: data}})
 		)
@@ -27,7 +27,7 @@ export function createConversation(userData, props, userName, user){
 		console.log("props", props)
 		console.log("userName", userName)
 		console.log("user", user)
-		fetch("http://localhost:3000/conversations", {
+		fetch("https://stark-fortress-17717.herokuapp.com/conversations", {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export function createConversation(userData, props, userName, user){
 export function selectUser(user_id){
 
 	return dispatch => {
-		fetch(`http://localhost:3000/users/${user_id}`)
+		fetch(`https://stark-fortress-17717.herokuapp.com/users/${user_id}`)
 		.then(res => res.json())
 		.then(data => {
 			dispatch({type: "SELECT_USER", payload: {selectedUser: data}})
@@ -70,7 +70,7 @@ export function resetSelectedUser(currentUser){
 export function joinConversation(user, convo, props){
 	return dispatch => {
 		user.conversations = [...user.conversations, convo]
-		fetch("http://localhost:3000/join_conversation", {
+		fetch("https://stark-fortress-17717.herokuapp.com/join_conversation", {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export function createDm(dmUsers, currentUser, props){
 	let allIds = [...ids, currentUser.id]
 	let names = dmUsers.map(user => user.first_name).join(", ")
 
-	fetch("http://localhost:3000/create_dm", {
+	fetch("https://stark-fortress-17717.herokuapp.com/create_dm", {
 		  method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ export function hideNotifications(){
 
 export function createNotification(title, Id, userId){
 return dispatch => {
-	fetch("http://localhost:3000/notifications",{
+	fetch("https://stark-fortress-17717.herokuapp.com/notifications",{
 		method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',

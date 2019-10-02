@@ -16,7 +16,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 ReactDOM.render(<Provider store={store}>
-					<ActionCableProvider url={'ws://localhost:3000/cable'}>
+					<ActionCableProvider url={'ws://stark-fortress-17717.herokuapp.com/cable'}>
 						<App />
 					</ActionCableProvider>
 				</Provider>, 

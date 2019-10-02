@@ -16,7 +16,7 @@ state = {
 
 componentDidMount(){
 		const token = localStorage.getItem("token")
-			fetch('http://localhost:3000/conversations')
+			fetch('https://stark-fortress-17717.herokuapp.com/conversations')
 					.then(res => res.json())
 					.then(data => {
 						this.setState({
