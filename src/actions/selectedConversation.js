@@ -1,6 +1,9 @@
+import * as variables from '../variables'
+
+
 export function selectedConversation(convoId) {	
 	return dispatch => {
-		fetch(`https://stark-fortress-17717.herokuapp.com/conversations/${convoId}`)
+		fetch(`${variables.BASE_URL}/conversations/${convoId}`)
 		.then(res => res.json())
 		.then(data => dispatch({type: "SELECT_CONVERSATION", payload: {currentConversation: data}})
 		)
@@ -22,12 +25,7 @@ export function deselectConversation(){
 
 export function createConversation(userData, props, userName, user){
 	return dispatch => {
-		console.log("userData", userData)
-		console.log("props", props)
-		console.log("props", props)
-		console.log("userName", userName)
-		console.log("user", user)
-		fetch("https://stark-fortress-17717.herokuapp.com/conversations", {
+		fetch(`${variables.BASE_URL}/conversations`, {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -52,7 +50,7 @@ export function createConversation(userData, props, userName, user){
 export function selectUser(user_id){
 
 	return dispatch => {
-		fetch(`https://stark-fortress-17717.herokuapp.com/users/${user_id}`)
+		fetch(`${variables.BASE_URL}/${user_id}`)
 		.then(res => res.json())
 		.then(data => {
 			dispatch({type: "SELECT_USER", payload: {selectedUser: data}})
@@ -70,7 +68,7 @@ export function resetSelectedUser(currentUser){
 export function joinConversation(user, convo, props){
 	return dispatch => {
 		user.conversations = [...user.conversations, convo]
-		fetch("https://stark-fortress-17717.herokuapp.com/join_conversation", {
+		fetch(`${variables.BASE_URL}/join_conversation`, {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -94,7 +92,7 @@ export function createDm(dmUsers, currentUser, props){
 	let allIds = [...ids, currentUser.id]
 	let names = dmUsers.map(user => user.first_name).join(", ")
 
-	fetch("https://stark-fortress-17717.herokuapp.com/create_dm", {
+	fetch(`${variables.BASE_URL}/create_dm`, {
 		  method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -129,7 +127,7 @@ export function hideNotifications(){
 
 export function createNotification(title, Id, userId){
 return dispatch => {
-	fetch("https://stark-fortress-17717.herokuapp.com/notifications",{
+	fetch(`${variables.BASE_URL}/notifications`,{
 		method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',
@@ -161,9 +159,7 @@ return dispatch => {
 }
 
 export function handleNewNotifications(user, data){
-	console.log('do i happen twice?')
   return dispatch => {
-  	
     user.notifications = [...user.notifications, data]
     dispatch({type: "RESET_USER", payload: {user: {...user}}})
   	

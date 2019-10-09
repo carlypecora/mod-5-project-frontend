@@ -1,6 +1,8 @@
+import * as variables from '../variables'
+
 export function login(userData, props) {
     return dispatch => {
-    fetch('https://stark-fortress-17717.herokuapp.com/login', {
+    fetch(`${variables.BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,7 +30,7 @@ export function login(userData, props) {
 
 export function signup(userData, props, password){
   return dispatch => {
-    fetch('https://stark-fortress-17717.herokuapp.com/users', {
+    fetch(`${variables.BASE_URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

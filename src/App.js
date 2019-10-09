@@ -3,6 +3,7 @@ import './App.css';
 import ConversationsContainer from './containers/ConversationsContainer'
 import MainContainer from './containers/MainContainer'
 import * as actions from './actions/autoLogin.js'
+import * as variables from './variables'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -15,8 +16,9 @@ state = {
 }
 
 componentDidMount(){
+	console.log(variables.BASE_URL)
 		const token = localStorage.getItem("token")
-			fetch('https://stark-fortress-17717.herokuapp.com/conversations')
+			fetch(`${variables.BASE_URL}/conversations`)
 					.then(res => res.json())
 					.then(data => {
 						this.setState({

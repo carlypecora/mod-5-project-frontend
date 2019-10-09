@@ -1,7 +1,8 @@
+import * as variables from '../variables'
+
 export function autoLogin(token) {
-    
     return dispatch => {
-    fetch("https://stark-fortress-17717.herokuapp.com/auto_login", {
+    fetch(`${variables.BASE_URL}/auto_login`, {
         headers: {
           "Authorization": token
         }
