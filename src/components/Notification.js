@@ -1,12 +1,13 @@
 import React from 'react'
 import * as actions from '../actions/autoLogin'
+import * as variables from '../variables.js'
 import { connect } from 'react-redux'
 
 class Notification extends React.Component {
 
 		componentWillUnmount(){
 			if(!this.props.note.read){
-			fetch(`https://stark-fortress-17717.herokuapp.com/notifications/${this.props.note.id}`, {
+			fetch(`${variables.BASE_URL}/${this.props.note.id}`, {
 				method: 'PATCH',
 				headers: {
 			        'Content-Type': 'application/json',

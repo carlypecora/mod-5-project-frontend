@@ -2,6 +2,7 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import * as actions from '../actions/selectedConversation.js'
+import * as variables from '../variables.js'
 import { connect } from 'react-redux'
 
 
@@ -71,7 +72,7 @@ class DmForm extends React.Component {
 	}
 
 	componentDidMount(){
-		fetch("https://stark-fortress-17717.herokuapp.com/users")
+		fetch(`${variables.BASE_URL}/users`)
 		.then(res => res.json())
 		.then(data => {
 			this.setState({

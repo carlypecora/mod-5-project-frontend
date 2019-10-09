@@ -1,6 +1,7 @@
 import React from 'react'
 import Message from './Message'
 import * as actions from '../actions/selectedConversation.js'
+import * as variables from '../variables.js'
 import { connect } from 'react-redux'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
@@ -26,7 +27,7 @@ class CurrentConversation extends React.Component {
 
  	handleSubmit = (e) => {
 	    e.preventDefault()
-		fetch('https://stark-fortress-17717.herokuapp.com/messages', {
+		fetch(`${variables.BASE_URL}/messages`, {
 	      method: 'POST',
 	      headers: {
 	        'Content-Type': 'application/json',

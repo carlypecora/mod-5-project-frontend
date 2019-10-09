@@ -32,7 +32,6 @@ componentDidMount(){
 }
 
 handleReceivedConversation = response => {
-	console.log("convo response", response)
 	if (!!response.dm){
 		this.props.resetUserForDms(this.props.currentUser, response) 
 	} else {
@@ -43,7 +42,6 @@ handleReceivedConversation = response => {
   }
 
 handleReceivedMessage = response => {
-	console.log("msg response")
 	const { message } = response;
 	const conversations = [...this.state.conversations];
 	const conversation = conversations.find(
